@@ -31,14 +31,15 @@ export default class TextFieldExampleControlled extends React.Component {
                 email: this.state.email,
                 password: this.state.password
             })
-                .then(res => console.log("User Saved"))
+                .then(res => console.log("User Created"))
                 .catch(err => console.log(err));
         }
     };
 
     render() {
         return (
-            <div>
+            <div className="create-container">
+            <h2> Sign Up! </h2>
                 <TextField
                     value={this.state.username}
                     hintText="Username"
