@@ -1,7 +1,7 @@
 {
-  "name": "mern",
+  "name": "game-hub",
   "version": "1.0.0",
-  "description": "Mern Demo",
+  "description": "game-hub",
   "main": "server.js",
   "scripts": {
     "server": "node server.js",
