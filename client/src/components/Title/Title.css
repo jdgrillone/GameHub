@@ -1,0 +1,10 @@
+.title-panel {
+    background-color: rgb(64, 37, 95);
+    text-align: center;
+    color: rgb(245, 245, 245);
+    margin-top: 0;
+    height: 200px;
+    line-height: 210px;
+    font-size: 52px;
+    font-weight: 500;
+}
