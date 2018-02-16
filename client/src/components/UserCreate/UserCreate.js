@@ -3,6 +3,7 @@ import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 import API from "../../utils/API";
 import "./UserCreate.css";
+import { Link } from "react-router-dom";
 
 export default class TextFieldExampleControlled extends React.Component {
 
@@ -39,7 +40,11 @@ export default class TextFieldExampleControlled extends React.Component {
     render() {
         return (
             <div className="create-container">
-            <h2> Sign Up! </h2>
+                <h2> Sign Up! or...
+                    <Link to={"/login"}>
+                        <RaisedButton label="Go to Login" secondary={true} style={{ margin: 12, }} />
+                    </Link>
+                </h2>
                 <TextField
                     value={this.state.username}
                     hintText="Username"

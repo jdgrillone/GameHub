@@ -6,7 +6,7 @@ import UserCreate from "./components/UserCreate";
 import Login from "./components/Login"
 import './App.css';
 import {
-  BrowseRouter as Router,
+  BrowserRouter as Router,
   Route,
   Switch
 } from 'react-router-dom'
@@ -14,10 +14,15 @@ import {
 class App extends Component {
   render() {
     return (
-      <MuiThemeProvider>
-        <h1>Welcome to GameHub</h1>
-        <UserCreate />
-      </ MuiThemeProvider>
+      <Router>
+        <MuiThemeProvider>
+          <h1>Welcome to GameHub</h1>
+          <Switch>
+            <Route exact path="/" component={UserCreate} />
+            <Route exact path="/login" component={Login} />
+          </Switch>
+        </ MuiThemeProvider>
+      </Router>
     );
   }
 }
