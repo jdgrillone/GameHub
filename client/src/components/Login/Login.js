@@ -32,7 +32,7 @@ export default class Login extends React.Component {
     render() {
         return (
             <div className="login-container">
-                <h2> Login! </h2>
+                <p>Login</p>
                 <TextField
                     value={this.state.username}
                     hintText="Username"
@@ -55,9 +55,7 @@ export default class Login extends React.Component {
                 />
                 <br />
                 <Link to={"/"}>
-                    <strong>
                         Not a user?  Sign up here!
-                    </strong>
                 </Link>
             </div>
         );

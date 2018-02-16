@@ -5,7 +5,7 @@ import API from "../../utils/API";
 import "./UserCreate.css";
 import { Link } from "react-router-dom";
 
-export default class TextFieldExampleControlled extends React.Component {
+export default class UserCreate extends React.Component {
 
     constructor(props) {
         super(props);
@@ -40,11 +40,11 @@ export default class TextFieldExampleControlled extends React.Component {
     render() {
         return (
             <div className="create-container">
-                <h2> Sign Up! or...
+                <p> Sign up now! or...
                     <Link to={"/login"}>
-                        <RaisedButton label="Go to Login" secondary={true} style={{ margin: 12, }} />
+                        Go to Login
                     </Link>
-                </h2>
+                </p>
                 <TextField
                     value={this.state.username}
                     hintText="Username"

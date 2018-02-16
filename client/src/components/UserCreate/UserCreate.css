@@ -1,5 +1,9 @@
 .create-container {
     margin: 20px;
+    background-color: white;
+    width: 25%;
+    padding: 20px;
+    border-radius: 5px;
 }
 
 h2 {

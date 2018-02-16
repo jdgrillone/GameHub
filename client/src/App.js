@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import UserCreate from "./components/UserCreate";
 import Login from "./components/Login"
+import Title from "./components/Title";
 import './App.css';
 import {
   BrowserRouter as Router,
@@ -16,7 +17,7 @@ class App extends Component {
     return (
       <Router>
         <MuiThemeProvider>
-          <h1>Welcome to GameHub</h1>
+          <Title />
           <Switch>
             <Route exact path="/" component={UserCreate} />
             <Route exact path="/login" component={Login} />
