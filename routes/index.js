@@ -1,13 +1,57 @@
-const path = require("path");
-const router = require("express").Router();
-const apiRoutes = require("./api");
+var express = require('express');
+var router = express.Router();
+var passport = require('passport');
 
-// API Routes
-router.use("/api", apiRoutes);
+var isAuthenticated = function (req, res, next) {
+    // if user is authenticated in the session, call the next() to call the next request handler 
+    // Passport adds this method to request object. A middleware is allowed to add properties to
+    // request and response objects
+    if (req.isAuthenticated())
+        return next();
+    // if the user is not authenticated then redirect him to the login page
+    res.redirect('/');
+}
 
-// If no API routes are hit, send the React app
-router.use(function(req, res) {
-    res.sendFile(path.join(__dirname, "../client/build/index.html"));
-});
+module.exports = function (passport) {
 
-module.exports = router;
+    /* GET login page. */
+    router.get('/', function (req, res) {
+        // Display the Login page with any flash message, if any
+        res.render('index', { message: req.flash('message') });
+    });
+
+    /* Handle Login POST */
+    console.log("A");
+    
+    console.log(passport);
+    router.post('/login', passport.authenticate('login', {
+        successRedirect: '/home',
+        failureRedirect: '/',
+        failureFlash: true
+    }));
+
+    /* GET Registration Page */
+    router.get('/signup', function (req, res) {
+        res.render('register', { message: req.flash('message') });
+    });
+
+    /* Handle Registration POST */
+    router.post('/signup', passport.authenticate('signup', {
+        successRedirect: '/home',
+        failureRedirect: '/signup',
+        failureFlash: true
+    }));
+
+    /* GET Home Page */
+    router.get('/home', isAuthenticated, function (req, res) {
+        res.render('home', { user: req.user });
+    });
+
+    /* Handle Logout */
+    router.get('/signout', function (req, res) {
+        req.logout();
+        res.redirect('/');
+    });
+
+    return router;
+}
