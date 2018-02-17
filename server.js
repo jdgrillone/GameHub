@@ -28,6 +28,10 @@ app.use(expressSession({ secret: 'mySecretKey' }));
 app.use(passport.initialize());
 app.use(passport.session());
 
+// Initialize Passport
+var initPassport = require('./passport/init');
+initPassport(passport);
+
 // Start the API server
 app.listen(PORT, function () {
   console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
