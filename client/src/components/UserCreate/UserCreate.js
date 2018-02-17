@@ -3,9 +3,9 @@ import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 import API from "../../utils/API";
 import "./UserCreate.css";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 
-export default class UserCreate extends React.Component {
+class UserCreate extends React.Component {
 
     constructor(props) {
         super(props);
@@ -32,7 +32,8 @@ export default class UserCreate extends React.Component {
                 email: this.state.email,
                 password: this.state.password
             })
-                .then(res => console.log("User Created"))
+                // Redirects user on success
+                .then(res => this.props.history.push("/login"))
                 .catch(err => console.log(err));
         }
     };
@@ -74,3 +75,5 @@ export default class UserCreate extends React.Component {
         );
     }
 }
+
+export default withRouter(UserCreate);
