@@ -1,12 +1,16 @@
 import React, { Component } from 'react';
+
+// Material UI
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import RaisedButton from 'material-ui/RaisedButton';
 
 import {
   BrowserRouter as Router,
   Route,
   Link,
   Redirect,
+  // eslint-disable-next-line
   withRouter
 } from 'react-router-dom'
 
@@ -77,13 +81,13 @@ class App extends Component {
           </div>
           {this.state.authenticated ? (
             <div className="top-bar-right">
-              <Link to="/dashboard">Dashboard</Link>
-              <Link to="/logout">Log out</Link>
+              <Link to="/dashboard"><RaisedButton label="Dashboard" primary={true} style={{margin: 0}} /></Link>
+              <Link to="/logout"><RaisedButton label="Logout" secondary={true} style={{margin: 0}} /></Link>
             </div>
           ) : (
             <div className="top-bar-right">
-              <Link to="/login">Log in</Link>
-              <Link to="/signup">Sign up</Link>
+              <Link to="/login"><RaisedButton label="Login" primary={true} style={{margin: 0}} /></Link>
+              <Link to="/signup"><RaisedButton label="Sign up"  style={{margin: 0}} backgroundColor="#13c631" labelColor="#ffffff" /></Link>
             </div>
           )}
 
