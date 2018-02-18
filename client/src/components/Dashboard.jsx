@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { Card, CardTitle, CardText } from 'material-ui/Card';
 
 const Dashboard = ({ secretData, user }) => (
-  <Card className="container">
+  <Card className="container" >
     <CardTitle 
       title="Dashboard"
       subtitle=""
