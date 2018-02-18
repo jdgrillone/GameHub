@@ -1,4 +1,5 @@
 const express = require('express');
+const gameController = require("../controller/gameController.js");
 
 const router = new express.Router();
 
@@ -9,5 +10,8 @@ router.get('/dashboard', (req, res) => {
         user: req.user
     });
 });
+
+router.route("/api")
+    .get(gameController.findAll);
 
 module.exports = router;
