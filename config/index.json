@@ -1,0 +1,4 @@
+{
+    "dbUri": "mongodb://localhost/gamehub",
+    "jwtSecret": "a secret phrase!!"
+}
