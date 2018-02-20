@@ -65,3 +65,12 @@ a:hover {
   padding: 0 16px;
   color: green;
 }
+
+.listItem-container {
+  margin: 0 auto;
+  width: 500px;
+}
+
+.listItem-link {
+  color: purple;
+}
