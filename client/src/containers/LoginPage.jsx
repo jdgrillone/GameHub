@@ -6,9 +6,7 @@ import LoginForm from '../components/LoginForm.jsx';
 
 class LoginPage extends React.Component {
 
-  /**
-   * Class constructor.
-   */
+  // Class constructor.
   constructor(props, context) {
     super(props, context);
 
@@ -100,9 +98,7 @@ class LoginPage extends React.Component {
     });
   }
 
-  /**
-   * Render the component.
-   */
+  // Render the component.
   render() {
     return (
       <LoginForm

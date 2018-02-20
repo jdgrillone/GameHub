@@ -5,9 +5,7 @@ import SignUpForm from '../components/SignUpForm.jsx';
 
 class SignUpPage extends React.Component {
 
-  /**
-   * Class constructor.
-   */
+  // Class constructor.
   constructor(props, context) {
     super(props, context);
 
@@ -88,9 +86,7 @@ class SignUpPage extends React.Component {
     });
   }
 
-  /**
-   * Render the component.
-   */
+  // Render the component.
   render() {
     return (
       <SignUpForm

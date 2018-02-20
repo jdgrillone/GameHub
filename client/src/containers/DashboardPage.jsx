@@ -5,9 +5,7 @@ import Dashboard from '../components/Dashboard.jsx';
 
 class DashboardPage extends React.Component {
 
-  /**
-   * Class constructor.
-   */
+  // Class constructor.
   constructor(props) {
     super(props);
 
@@ -17,9 +15,7 @@ class DashboardPage extends React.Component {
     };
   }
 
-  /**
-   * This method will be executed after initial rendering.
-   */
+  // This method will be executed after initial rendering.
   componentDidMount() {
     const xhr = new XMLHttpRequest();
     xhr.open('get', '/api/dashboard');
@@ -38,9 +34,7 @@ class DashboardPage extends React.Component {
     xhr.send();
   }
 
-  /**
-   * Render the component.
-   */
+  // Render the component
   render() {
     return (<Dashboard secretData={this.state.secretData} user={this.state.user} />);
   }
