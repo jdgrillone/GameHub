@@ -1,6 +1,7 @@
 import React from 'react';
 import Auth from '../modules/Auth';
 import Dashboard from '../components/Dashboard.jsx';
+import ListItem from '../components/ListItem.jsx';
 
 
 class DashboardPage extends React.Component {
@@ -36,7 +37,13 @@ class DashboardPage extends React.Component {
 
   // Render the component
   render() {
-    return (<Dashboard secretData={this.state.secretData} user={this.state.user} />);
+    return (
+    <div>
+    <Dashboard secretData={this.state.secretData} user={this.state.user} />
+    <br />
+    <ListItem />
+    </div>
+  );
   }
 
 }
