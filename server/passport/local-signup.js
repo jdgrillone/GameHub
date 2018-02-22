@@ -11,7 +11,14 @@ module.exports = new PassportLocalStrategy({
     const userData = {
         email: email.trim(),
         password: password.trim(),
-        name: req.body.name.trim()
+        name: req.body.name.trim(),
+        games: {        
+            id: 0,
+            name: "Monster Hunter World",
+            summary: "A game about killing monsters",
+            platform: ["PS4", "Xbox One"],
+            notes: []
+        }
     };
 
     const newUser = new User(userData);

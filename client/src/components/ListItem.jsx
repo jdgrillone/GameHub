@@ -17,6 +17,7 @@ export default class ListItem extends React.Component {
 
     handleToggle = (event, toggle) => {
         this.setState({ expanded: toggle });
+        console.log(this.props.platform);
     };
 
     handleExpand = () => {
@@ -31,8 +32,8 @@ export default class ListItem extends React.Component {
         return (
             <Card className="listItem-container" expanded={this.state.expanded} onExpandChange={this.handleExpandChange}>
                 <CardHeader
-                    title="Monster Hunter World"
-                    subtitle="PS4"
+                    title={this.props.name}
+                    subtitle={this.props.platform.join(", ")}
                     actAsExpander={false}
                     showExpandableButton={false}
                     >
@@ -45,7 +46,8 @@ export default class ListItem extends React.Component {
                     />
                 </CardHeader>
                 <CardText expandable={true}>
-                    <p>Some stuff about the game</p>
+                    <h3><strong>Summary: </strong></h3>
+                    <p>{this.props.summary}</p>
                     <p>List of URL's</p>
                     <ul>
                         <li><a href="www.google.com" target="" className="listItem-link">Link</a></li>

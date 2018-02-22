@@ -12,7 +12,9 @@ class DashboardPage extends React.Component {
 
     this.state = {
       secretData: '',
-      user: {}
+      user: {
+        games: []
+      }
     };
   }
 
@@ -38,12 +40,20 @@ class DashboardPage extends React.Component {
   // Render the component
   render() {
     return (
-    <div>
-    <Dashboard secretData={this.state.secretData} user={this.state.user} />
-    <br />
-    <ListItem />
-    </div>
-  );
+      <div>
+        <Dashboard secretData={this.state.secretData} user={this.state.user} />
+        <br />
+
+        {this.state.user.games.map(games => (
+          <ListItem
+            name={games.name}
+            notes={games.notes}
+            platform={games.platform}
+            summary={games.summary}
+          />
+        ))}
+      </div>
+    );
   }
 
 }
