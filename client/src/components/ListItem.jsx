@@ -40,9 +40,9 @@ export default class ListItem extends React.Component {
                     <Toggle
                         toggled={this.state.expanded}
                         onToggle={this.handleToggle}
-                        labelPosition="right"
-                        label="Expand"
-                        style={{width: "25%", float: "right"}}
+                        labelPosition="left"
+                        label={false}
+                        style={{width: "60px", float: "right"}}
                     />
                 </CardHeader>
                 <CardText expandable={true}>

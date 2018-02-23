@@ -2,6 +2,7 @@ import React from 'react';
 import Auth from '../modules/Auth';
 import Dashboard from '../components/Dashboard.jsx';
 import ListItem from '../components/ListItem.jsx';
+import AddGame from '../components/AddGame.jsx';
 
 
 class DashboardPage extends React.Component {
@@ -43,7 +44,7 @@ class DashboardPage extends React.Component {
       <div>
         <Dashboard secretData={this.state.secretData} user={this.state.user} />
         <br />
-
+        <AddGame />
         {this.state.user.games.map(games => (
           <ListItem
             name={games.name}
