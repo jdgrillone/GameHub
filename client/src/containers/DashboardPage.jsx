@@ -41,18 +41,15 @@ class DashboardPage extends React.Component {
   }
 
   onGameAdd (game) {
-    console.log("Added Game:", game);
     const newUserState = Object.assign({}, this.state.user);
     const newGamesArray = this.state.user.games.slice();
     newGamesArray.push(game);
     newUserState.games = newGamesArray;
-    console.log("New user state:", newUserState);
     this.setState({ user: newUserState});
   }
 
   // Render the component
   render() {
-    console.log(this.state.user._id);
     return (
       <div>
         <Dashboard secretData={this.state.secretData} user={this.state.user} />

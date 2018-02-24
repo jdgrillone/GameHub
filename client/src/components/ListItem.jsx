@@ -11,7 +11,7 @@ export default class ListItem extends React.Component {
         };
     }
 
-    // Functions to handle Toggle feature **
+    // ** Functions to handle Toggle feature **
     handleExpandChange = (expanded) => {
         this.setState({ expanded: expanded });
     };
@@ -27,7 +27,7 @@ export default class ListItem extends React.Component {
     handleReduce = () => {
         this.setState({ expanded: false });
     };
-    // **
+    // ** --------------- **
 
     render() {
         return (

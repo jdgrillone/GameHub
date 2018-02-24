@@ -15,8 +15,11 @@ export default {
     },
 
     addGame: function (data) {
-        console.log("In API", data);
         return axios.post("/user/update", data);
+    },
+
+    userList: function() {
+        return axios.get("/user");
     }
 
 }

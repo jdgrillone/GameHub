@@ -39,7 +39,6 @@ export default class AddGame extends React.Component {
             userID: this.props.userId,
             gameID: this.state.gamesResult[0]._id
         }
-        console.log(data);
         API.addGame(data)
         .then((res) => {
             this.handleClose();
@@ -55,8 +54,6 @@ export default class AddGame extends React.Component {
     }
 
     render() {
-        console.log(this.props);
-        console.log(this.state.gamesResult);
         return (
             <div className="addGame-container">
                 <RaisedButton
