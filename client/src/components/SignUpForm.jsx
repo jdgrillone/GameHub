@@ -47,6 +47,7 @@ const SignUpForm = ({
           errorText={errors.password}
           value={user.password}
         />
+        <p><small><small>**Password must be 8 or more characters long**</small></small></p>
       </div>
 
       <div className="button-line">
