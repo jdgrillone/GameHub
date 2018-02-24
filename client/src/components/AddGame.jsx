@@ -34,6 +34,20 @@ export default class AddGame extends React.Component {
         }
     }
 
+    addGame = () => {
+        let data = {
+            userID: this.props.userId,
+            gameID: this.state.gamesResult[0]._id
+        }
+        console.log(data);
+        API.addGame(data)
+        .then((res) => {
+            this.handleClose();
+            this.props.onGameAdd(res.data);
+        })
+        .catch(err => console.log(err));
+    }
+
     // Updates state when TextField value changes
     handleInputChange = (event) => {
         let value = event.target.value;
@@ -41,6 +55,8 @@ export default class AddGame extends React.Component {
     }
 
     render() {
+        console.log(this.props);
+        console.log(this.state.gamesResult);
         return (
             <div className="addGame-container">
                 <RaisedButton
@@ -70,6 +86,10 @@ export default class AddGame extends React.Component {
                     {this.state.gamesResult.map(game => (
                         <p id={game.id}>{game.name}</p>
                     ))}
+                    <FloatingActionButton 
+                        mini={true}
+                        onClick={this.addGame}>
+                    </ FloatingActionButton>
                 </Drawer>
             </div>
         );

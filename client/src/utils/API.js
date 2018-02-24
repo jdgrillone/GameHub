@@ -12,6 +12,11 @@ export default {
 
     searchGames: function (gameTitle) {
         return axios.get("/games/" + gameTitle);
+    },
+
+    addGame: function (data) {
+        console.log("In API", data);
+        return axios.post("/user/update", data);
     }
 
 }

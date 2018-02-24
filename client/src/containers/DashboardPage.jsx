@@ -17,7 +17,9 @@ class DashboardPage extends React.Component {
         games: []
       }
     };
+    this.onGameAdd = this.onGameAdd.bind(this);
   }
+
 
   // This method will be executed after initial rendering.
   componentDidMount() {
@@ -38,20 +40,31 @@ class DashboardPage extends React.Component {
     xhr.send();
   }
 
+  onGameAdd (game) {
+    console.log("Added Game:", game);
+    const newUserState = Object.assign({}, this.state.user);
+    const newGamesArray = this.state.user.games.slice();
+    newGamesArray.push(game);
+    newUserState.games = newGamesArray;
+    console.log("New user state:", newUserState);
+    this.setState({ user: newUserState});
+  }
+
   // Render the component
   render() {
+    console.log(this.state.user._id);
     return (
       <div>
         <Dashboard secretData={this.state.secretData} user={this.state.user} />
         <br />
-        <AddGame />
+        <AddGame userId={this.state.user._id} onGameAdd={this.onGameAdd}/>
         {this.state.user.games.map(games => (
           <ListItem
             name={games.name}
             notes={games.notes}
             platform={games.platform}
             summary={games.summary}
-            id={games.id}
+            key={games.id}
           />
         ))}
       </div>
