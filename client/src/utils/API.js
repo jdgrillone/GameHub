@@ -20,6 +20,10 @@ export default {
 
     userList: function() {
         return axios.get("/user");
+    },
+
+    getUser: function(id) {
+        return axios.get("/user/" + id);
     }
 
 }

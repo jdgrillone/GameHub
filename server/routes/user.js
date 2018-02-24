@@ -7,4 +7,7 @@ router.route("/update")
 router.route("/")
     .get(userController.findAll);
 
+router.route("/:id")
+    .get(userController.findOne);
+
 module.exports = router;

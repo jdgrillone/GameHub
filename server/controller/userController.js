@@ -22,10 +22,18 @@ module.exports = {
     // Route to find all users
     findAll: function (req, res) {
         db
-            .find({}, 'name', function (err, user) {
+        .find({}, 'name', function (err, user) {
                 if (err) return res.status(422).json(err);
                 res.send(user);
-            }
-            )
+        })
+    },
+
+    // Rote to find one user
+    findOne: function (req, res) {
+        db
+        .findById(req.params.id, function(err, user) {
+            if (err) return res.status(422).json(err);
+            res.send(user);
+        })
     }
 };
