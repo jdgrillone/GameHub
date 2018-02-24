@@ -4,7 +4,7 @@ const passport = require('passport');
 const config = require('./config');
 
 // connect to the database and load models
-require('./server/models').connect(config.dbUri);
+require('./server/models').connect(process.env.MONGODB_URI || config.dbUri);
 
 const app = express();
 // tell the app to look for static files in these directories
