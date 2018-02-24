@@ -51,6 +51,7 @@ class DashboardPage extends React.Component {
             notes={games.notes}
             platform={games.platform}
             summary={games.summary}
+            id={games.id}
           />
         ))}
       </div>
