@@ -8,5 +8,10 @@ export default {
 
     loginUser: function (userData) {
         return axios.post("/login", userData).then(function (res) { console.log(res); })
+    },
+
+    searchGames: function (gameTitle) {
+        return axios.get("/games/" + gameTitle);
     }
+
 }

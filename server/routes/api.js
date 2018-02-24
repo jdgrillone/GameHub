@@ -11,7 +11,4 @@ router.get('/dashboard', (req, res) => {
     });
 });
 
-router.route("/api")
-    .get(gameController.findAll);
-
 module.exports = router;
