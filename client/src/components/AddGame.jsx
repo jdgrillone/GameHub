@@ -17,16 +17,24 @@ export default class AddGame extends React.Component {
         };
     }
 
+    // Handles toggle for AddGame Drawer
     handleToggle = () => this.setState({ open: !this.state.open });
 
+    // Handle close for AddGame Drawer
     handleClose = () => this.setState({ open: false });
 
+    // Calls API to search games collection for state.fieldValue
     searchGame = () => {
         API.searchGames(this.state.fieldValue)
             .then(res => this.setState({ gamesResult: res.data }))
             .catch(err => console.log(err));
+
+        if (this.state.gamesResult.length > 1) {
+            this.setState({ gamesResult: { name: "No Result" } });
+        }
     }
 
+    // Updates state when TextField value changes
     handleInputChange = (event) => {
         let value = event.target.value;
         this.setState({ fieldValue: value});
@@ -60,7 +68,7 @@ export default class AddGame extends React.Component {
                     </ FloatingActionButton>
                     <br />
                     {this.state.gamesResult.map(game => (
-                        <p>{game.name}</p>
+                        <p id={game.id}>{game.name}</p>
                     ))}
                 </Drawer>
             </div>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, CardHeader, CardTitle, CardText } from 'material-ui/Card';
+import { Card, CardHeader, CardText } from 'material-ui/Card';
 import Toggle from 'material-ui/Toggle';
 
 export default class ListItem extends React.Component {
@@ -11,13 +11,13 @@ export default class ListItem extends React.Component {
         };
     }
 
+    // Functions to handle Toggle feature **
     handleExpandChange = (expanded) => {
         this.setState({ expanded: expanded });
     };
 
     handleToggle = (event, toggle) => {
         this.setState({ expanded: toggle });
-        console.log(this.props.platform);
     };
 
     handleExpand = () => {
@@ -27,6 +27,7 @@ export default class ListItem extends React.Component {
     handleReduce = () => {
         this.setState({ expanded: false });
     };
+    // **
 
     render() {
         return (
@@ -50,7 +51,7 @@ export default class ListItem extends React.Component {
                     <p>{this.props.summary}</p>
                     <p>List of URL's</p>
                     <ul>
-                        <li><a href="www.google.com" target="" className="listItem-link">Link</a></li>
+                        <li><a href="www.google.com" target="_blank" className="listItem-link">Link</a></li>
                     </ul>
                 </CardText>
             </Card>
