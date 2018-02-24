@@ -28,8 +28,10 @@ app.use('/api', authCheckMiddleware);
 // routes
 const authRoutes = require('./server/routes/auth');
 const apiRoutes = require('./server/routes/api');
+const gameRoutes = require('./server/routes/games');
 app.use('/auth', authRoutes);
 app.use('/api', apiRoutes);
+app.use('/games', gameRoutes);
 
 // Set Port, hosting services will look for process.env.PORT
 app.set('port', (process.env.PORT || 3001));
