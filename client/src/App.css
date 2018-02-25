@@ -80,3 +80,8 @@ a:hover {
   margin-bottom: 5px;
   width: 500px;
 }
+
+.userListItem-container {
+  margin: 0 auto;
+  width: 500px;
+}

@@ -81,6 +81,7 @@ class App extends Component {
             <div className="top-bar-left">
               <Link to="/">GameHUB</Link>
           </div>
+
           {this.state.authenticated ? (
             <div className="top-bar-right">
               <Link to="/dashboard"><RaisedButton label="Dashboard" primary={true} style={{margin: 0}} /></Link>
@@ -92,7 +93,9 @@ class App extends Component {
               <Link to="/signup"><RaisedButton label="Sign up"  style={{margin: 0}} backgroundColor="#13c631" labelColor="#ffffff" /></Link>
             </div>
           )}
-
+              <div className="top-bar-right">
+                <Link to="/userslist"><RaisedButton label="User List" primary={true} style={{ margin: 0 }} /></Link>
+              </div>
         </div>
 
             <PropsRoute exact path="/" component={HomePage} toggleAuthenticateStatus={() => this.toggleAuthenticateStatus()} />

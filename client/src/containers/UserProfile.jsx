@@ -1,4 +1,5 @@
 import React from 'react';
+import ProfileItem from '../components/ProfileItem.jsx';
 import API from '../utils/API.js';
 
 class UserProfile extends React.Component {
@@ -7,19 +8,32 @@ class UserProfile extends React.Component {
         super(props);
 
         this.state = {
-            user: {}
+            user: {
+                games: []
+            }
         };
     }
 
     componentWillMount() {
         API.getUser(this.props.match.params.id)
-        .then(res => this.setState({ user: res.data}))
-        .catch(err => console.log(err));
+            .then(res => this.setState({ user: res.data }))
+            .catch(err => console.log(err));
     }
 
     render() {
         return (
-            <p>Welcome to {this.state.user.name}'s List</p>
+            <div>
+                <p>Welcome to {this.state.user.name}'s List</p>
+                {this.state.user.games.map(games => (
+                    <ProfileItem
+                        name={games.name}
+                        notes={games.notes}
+                        platform={games.platform}
+                        summary={games.summary}
+                        key={games.id}
+                    />
+                ))}
+            </div>
         );
     }
 }
