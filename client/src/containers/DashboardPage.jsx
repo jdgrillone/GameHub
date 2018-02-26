@@ -3,6 +3,7 @@ import Auth from '../modules/Auth';
 import Dashboard from '../components/Dashboard.jsx';
 import ListItem from '../components/ListItem.jsx';
 import AddGame from '../components/AddGame.jsx';
+import EmptyListMessage from '../components/EmptyListMessage.jsx';
 
 
 class DashboardPage extends React.Component {
@@ -55,6 +56,14 @@ class DashboardPage extends React.Component {
         <Dashboard secretData={this.state.secretData} user={this.state.user} />
         <br />
         <AddGame userId={this.state.user._id} onGameAdd={this.onGameAdd}/>
+
+        {/* Handler for empty list message */}
+  
+        {(this.state.user.games.length === 0)
+          ? <EmptyListMessage />
+          : <span></span> 
+      }
+
         {this.state.user.games.map(games => (
           <ListItem
             name={games.name}
