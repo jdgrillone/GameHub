@@ -85,3 +85,6 @@ a:hover {
   margin: 0 auto;
   width: 500px;
 }
+.deleteButton {
+  width: 30px;
+}

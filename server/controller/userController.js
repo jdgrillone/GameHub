@@ -25,15 +25,29 @@ module.exports = {
         .find({}, 'name', function (err, user) {
                 if (err) return res.status(422).json(err);
                 res.send(user);
-        })
+        });
     },
 
-    // Rote to find one user
+    // Route to find one user
     findOne: function (req, res) {
         db
         .findById(req.params.id, function(err, user) {
             if (err) return res.status(422).json(err);
             res.send(user);
-        })
+        });
+    },
+
+    // Route to delete game from user
+    findOneAndDelete: function(req, res) {
+        db
+        .findById(req.body.userID, function (err, user) {
+            if (err) return res.status(422).json(err);
+
+            user.games.pull(req.body.gameID);
+            user.save(function (err, updatedUser) {
+                if (err) return res.status(422).json(err);
+                res.send(user);
+            });
+        });
     }
 };

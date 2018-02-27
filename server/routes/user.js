@@ -10,4 +10,7 @@ router.route("/")
 router.route("/:id")
     .get(userController.findOne);
 
+router.route("/delete")
+    .post(userController.findOneAndDelete);
+
 module.exports = router;

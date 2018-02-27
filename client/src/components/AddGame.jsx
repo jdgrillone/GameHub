@@ -13,7 +13,7 @@ export default class AddGame extends React.Component {
         this.state = { 
             open: false,
             fieldValue: "",
-            gamesResult: [],   
+            gamesResult: [],  
         };
     }
 
@@ -43,6 +43,8 @@ export default class AddGame extends React.Component {
         .then((res) => {
             this.handleClose();
             this.props.onGameAdd(res.data);
+            this.setState({ gamesResult: []});
+            this.setState({ fieldValue: "" });
         })
         .catch(err => console.log(err));
     }
@@ -71,8 +73,10 @@ export default class AddGame extends React.Component {
                 >
                     <p>Search for a game!</p>
                     <TextField
+                        id="add-game-input"
                         hintText="Game Title"
                         onChange={this.handleInputChange}
+                        value={this.state.fieldValue}
                     />
                     <FloatingActionButton 
                     mini={true}

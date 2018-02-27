@@ -1,6 +1,9 @@
 import React from 'react';
 import { Card, CardHeader, CardText } from 'material-ui/Card';
 import Toggle from 'material-ui/Toggle';
+import IconButton from 'material-ui/IconButton';
+import ClearIcon from 'material-ui/svg-icons/content/clear';
+import API from '../utils/API.js';
 
 export default class ListItem extends React.Component {
 
@@ -8,6 +11,7 @@ export default class ListItem extends React.Component {
         super(props);
         this.state = {
             expanded: false,
+            id: this.props.id
         };
     }
 
@@ -28,6 +32,22 @@ export default class ListItem extends React.Component {
         this.setState({ expanded: false });
     };
     // ** --------------- **
+
+    gameDelete = () => {
+        let data = {
+            userID: this.props.userId,
+            gameID: this.state.id
+        }
+        API.deleteGame(data)
+        .then((res) => {
+            this.props.onDelete(this.state.id);
+        })
+        .catch(err => console.log(err));
+        // Call API function
+        // .then((res) => {
+        //  this.props.onDelete(this.state.id);
+        //}).catch(err -> console.log(err));
+    }
 
     render() {
         return (
@@ -53,6 +73,10 @@ export default class ListItem extends React.Component {
                     <ul>
                         <li><a href="www.google.com" target="_blank" className="listItem-link">Link</a></li>
                     </ul>
+                    <IconButton tooltip="Delete Entry" onClick={this.gameDelete} touch={true} tooltipPosition="bottom-right" iconStyle={{backgroundColor: "red", borderRadius: "20px"}}>
+                    <ClearIcon />
+                    </IconButton>
+                
                 </CardText>
             </Card>
         );

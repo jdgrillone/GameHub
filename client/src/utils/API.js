@@ -24,6 +24,10 @@ export default {
 
     getUser: function(id) {
         return axios.get("/user/" + id);
+    },
+
+    deleteGame: function(data) {
+        return axios.post("/user/delete", data);
     }
 
 }

@@ -19,6 +19,7 @@ class DashboardPage extends React.Component {
       }
     };
     this.onGameAdd = this.onGameAdd.bind(this);
+    this.onDelete = this.onDelete.bind(this);
   }
 
 
@@ -39,18 +40,33 @@ class DashboardPage extends React.Component {
       }
     });
     xhr.send();
+    
   }
 
   onGameAdd (game) {
-    const newUserState = Object.assign({}, this.state.user);
-    const newGamesArray = this.state.user.games.slice();
+    let newUserState = Object.assign({}, this.state.user);
+    let newGamesArray = this.state.user.games.slice();
     newGamesArray.push(game);
     newUserState.games = newGamesArray;
-    this.setState({ user: newUserState});
+    this.setState({ user: newUserState });
+  }
+
+  // Function to handle Delete Entry button
+  onDelete = (game) => {
+    let newUserState = Object.assign({}, this.state.user);
+    let array = this.state.user.games;
+    let index = array.findIndex(i => i.id === game);
+    if (index > -1) {
+      array.splice(index, 1);
+    }
+    newUserState.games = array;
+    console.log(newUserState);
+    this.setState({ user: newUserState });
   }
 
   // Render the component
   render() {
+    console.log(this.state.user.games);
     return (
       <div>
         <Dashboard secretData={this.state.secretData} user={this.state.user} />
@@ -58,7 +74,6 @@ class DashboardPage extends React.Component {
         <AddGame userId={this.state.user._id} onGameAdd={this.onGameAdd}/>
 
         {/* Handler for empty list message */}
-  
         {(this.state.user.games.length === 0)
           ? <EmptyListMessage />
           : <span></span> 
@@ -67,10 +82,13 @@ class DashboardPage extends React.Component {
         {this.state.user.games.map(games => (
           <ListItem
             name={games.name}
+            id={games.id}
             notes={games.notes}
             platform={games.platform}
             summary={games.summary}
             key={games.id}
+            onDelete={this.onDelete}
+            userId={this.state.user._id}
           />
         ))}
       </div>

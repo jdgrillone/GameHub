@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, CardHeader, CardText } from 'material-ui/Card';
+import { Card, CardHeader } from 'material-ui/Card';
 
 export default class EmptyListMessage extends React.Component {
 
