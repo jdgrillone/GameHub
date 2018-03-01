@@ -40,14 +40,13 @@ module.exports = {
     // Route to delete game from user
     findOneAndDelete: function(req, res) {
         db
-        .findById(req.body.userID, function (err, user) {
-            if (err) return res.status(422).json(err);
-
-            user.games.pull(req.body.gameID);
-            user.save(function (err, updatedUser) {
-                if (err) return res.status(422).json(err);
-                res.send(user);
+        .update(
+            { "_id": req.body.userID},
+            { $pull: { "games" : { id: req.body.gameID } } }, function (err, data){
+                if (err) {
+                    return res.status(500).json({ 'error': 'error in deleting game' });
+                }
+                res.json(data);
             });
-        });
     }
 };
