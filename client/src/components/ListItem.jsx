@@ -43,10 +43,6 @@ export default class ListItem extends React.Component {
             this.props.onDelete(this.state.id);
         })
         .catch(err => console.log(err));
-        // Call API function
-        // .then((res) => {
-        //  this.props.onDelete(this.state.id);
-        //}).catch(err -> console.log(err));
     }
 
     render() {

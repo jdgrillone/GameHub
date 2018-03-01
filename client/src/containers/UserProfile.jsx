@@ -1,6 +1,8 @@
 import React from 'react';
 import ProfileItem from '../components/ProfileItem.jsx';
 import API from '../utils/API.js';
+import { Card, CardTitle} from 'material-ui/Card';
+
 
 class UserProfile extends React.Component {
 
@@ -23,7 +25,14 @@ class UserProfile extends React.Component {
     render() {
         return (
             <div>
-                <p>Welcome to {this.state.user.name}'s List</p>
+                {/* <p>Welcome to {this.state.user.name}'s List</p> */}
+                <Card className="container" >
+                    <CardTitle
+                        title={this.state.user.name + "'s Profile"}
+                        subtitle=""
+                    />
+                </Card>
+                <br />
                 {this.state.user.games.map(games => (
                     <ProfileItem
                         name={games.name}

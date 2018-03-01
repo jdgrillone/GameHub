@@ -60,13 +60,11 @@ class DashboardPage extends React.Component {
       array.splice(index, 1);
     }
     newUserState.games = array;
-    console.log(newUserState);
     this.setState({ user: newUserState });
   }
 
   // Render the component
   render() {
-    console.log(this.state.user.games);
     return (
       <div>
         <Dashboard secretData={this.state.secretData} user={this.state.user} />

@@ -84,18 +84,20 @@ class App extends Component {
 
           {this.state.authenticated ? (
             <div className="top-bar-right">
-              <Link to="/dashboard"><RaisedButton label="Dashboard" primary={true} style={{margin: 0}} /></Link>
-              <Link to="/logout"><RaisedButton label="Logout" secondary={true} style={{margin: 0}} /></Link>
+              <Link to="/userslist"><RaisedButton className="nav-button" label="User List" primary={true} style={{ margin: 0 }} /></Link>
+              <Link to="/dashboard"><RaisedButton className="nav-button" label="Dashboard" primary={true} style={{margin: 0}} /></Link>
+              <Link to="/logout"><RaisedButton className="nav-button" label="Logout" secondary={true} style={{margin: 0}} /></Link>
             </div>
           ) : (
             <div className="top-bar-right">
-              <Link to="/login"><RaisedButton label="Login" primary={true} style={{margin: 0}} /></Link>
-              <Link to="/signup"><RaisedButton label="Sign up"  style={{margin: 0}} backgroundColor="#13c631" labelColor="#ffffff" /></Link>
+              <Link to="/userslist"><RaisedButton className="nav-button" label="User List" primary={true} style={{ margin: 0 }} /></Link>
+              <Link to="/login"><RaisedButton className="nav-button" label="Login" primary={true} style={{margin: 0}} /></Link>
+              <Link to="/signup"><RaisedButton className="nav-button" label="Sign up"  style={{margin: 0}} backgroundColor="#13c631" labelColor="#ffffff" /></Link>
             </div>
           )}
-              <div className="top-bar-right">
+              {/* <div className="top-bar-right">
                 <Link to="/userslist"><RaisedButton label="User List" primary={true} style={{ margin: 0 }} /></Link>
-              </div>
+              </div> */}
         </div>
 
             <PropsRoute exact path="/" component={HomePage} toggleAuthenticateStatus={() => this.toggleAuthenticateStatus()} />

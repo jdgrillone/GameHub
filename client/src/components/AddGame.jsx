@@ -5,15 +5,16 @@ import TextField from 'material-ui/TextField';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import SearchIcon from 'material-ui/svg-icons/action/youtube-searched-for';
 import API from '../utils/API.js';
+import Chip from 'material-ui/Chip';
 
 export default class AddGame extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = { 
+        this.state = {
             open: false,
             fieldValue: "",
-            gamesResult: [],  
+            gamesResult: [],
         };
     }
 
@@ -24,14 +25,16 @@ export default class AddGame extends React.Component {
     handleClose = () => this.setState({ open: false });
 
     // Calls API to search games collection for state.fieldValue
-    searchGame = () => {
+    searchGame = (event) => {
+        event.preventDefault();
         API.searchGames(this.state.fieldValue)
-            .then(res => this.setState({ gamesResult: res.data }))
+            .then(res => {
+                this.setState({ gamesResult: res.data });
+                if (res.data.length < 1) {
+                    alert("Game not found");
+                }
+            })
             .catch(err => console.log(err));
-
-        if (this.state.gamesResult.length > 1) {
-            this.setState({ gamesResult: { name: "No Result" } });
-        }
     }
 
     addGame = () => {
@@ -40,19 +43,19 @@ export default class AddGame extends React.Component {
             gameID: this.state.gamesResult[0]._id
         }
         API.addGame(data)
-        .then((res) => {
-            this.handleClose();
-            this.props.onGameAdd(res.data);
-            this.setState({ gamesResult: []});
-            this.setState({ fieldValue: "" });
-        })
-        .catch(err => console.log(err));
+            .then((res) => {
+                this.handleClose();
+                this.props.onGameAdd(res.data);
+                this.setState({ gamesResult: [] });
+                this.setState({ fieldValue: "" });
+            })
+            .catch(err => console.log(err));
     }
 
     // Updates state when TextField value changes
     handleInputChange = (event) => {
         let value = event.target.value;
-        this.setState({ fieldValue: value});
+        this.setState({ fieldValue: value });
     }
 
     render() {
@@ -66,31 +69,35 @@ export default class AddGame extends React.Component {
                 />
                 <Drawer
                     docked={false}
-                    width={300}
+                    width={350}
                     open={this.state.open}
                     onRequestChange={(open) => this.setState({ open })}
-                    style={{ padding: '5px'}}
+                    style={{ padding: '5px' }}
                 >
-                    <p>Search for a game!</p>
+                <div className="drawer-contents">
                     <TextField
                         id="add-game-input"
-                        hintText="Game Title"
+                        floatingLabelText="Search by Game Title"
                         onChange={this.handleInputChange}
                         value={this.state.fieldValue}
                     />
-                    <FloatingActionButton 
-                    mini={true}
-                    onClick={this.searchGame}>
+                    <FloatingActionButton
+                        mini={true}
+                        onClick={this.searchGame}>
                         <SearchIcon />
                     </ FloatingActionButton>
                     <br />
                     {this.state.gamesResult.map(game => (
-                        <p id={game.id}>{game.name}</p>
+                        <Chip
+                            id={game.id}
+                            key={game.id}
+                            onClick={this.addGame}
+                            style={{ padding: "10px" }}
+                        >
+                            {game.name}
+                        </Chip>
                     ))}
-                    <FloatingActionButton 
-                        mini={true}
-                        onClick={this.addGame}>
-                    </ FloatingActionButton>
+                </div>
                 </Drawer>
             </div>
         );
