@@ -8,16 +8,6 @@ require('./server/models').connect(process.env.MONGODB_URI || config.dbUri);
 
 const app = express();
 
-// Middleware to require HTTPS
-function requireHTTPS(req, res, next) {
-  if (!req.secure) {
-    console.log(req);
-    return res.redirect('https://' + req.get('host') + req.url);
-  }
-  next();
-}
-app.use(requireHTTPS);
-
 // tell the app to look for static files in these directories
 app.use(express.static('./server/static/'));
 app.use(express.static('./client/build/'));
