@@ -11,7 +11,7 @@ const app = express();
 // Middleware to require HTTPS
 function requireHTTPS(req, res, next) {
   if (!req.secure) {
-    console.log(JSON.stringify(req));
+    console.log(req);
     return res.redirect('https://' + req.get('host') + req.url);
   }
   next();
