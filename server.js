@@ -16,6 +16,15 @@ app.use(bodyParser.json());
 // pass the passport middleware
 app.use(passport.initialize());
 
+// Middleware to require HTTPS
+function requireHTTPS(req, res, next) {
+  if (!req.secure) {
+    return res.redirect('https://' + req.get('host') + req.url);
+  }
+  next();
+}
+app.use(requireHTTPS);
+
 // load passport strategies
 const localSignupStrategy = require('./server/passport/local-signup');
 const localLoginStrategy = require('./server/passport/local-login');

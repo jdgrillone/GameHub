@@ -32,25 +32,25 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
     Auth.isUserAuthenticated() ? (
       <Component {...props} {...rest} />
     ) : (
-      <Redirect to={{
-        pathname: '/',
-        state: { from: props.location }
-      }}/>
-    )
-  )}/>
+        <Redirect to={{
+          pathname: '/',
+          state: { from: props.location }
+        }} />
+      )
+  )} />
 )
 
 const LoggedOutRoute = ({ component: Component, ...rest }) => (
   <Route {...rest} render={props => (
     <Component {...props} {...rest} />
-  )}/>
+  )} />
 )
 
-  const PropsRoute = ({ component: Component, ...rest }) => (
-    <Route {...rest} render={props => (
-      <Component {...props} {...rest} />
-    )}/>
-  )
+const PropsRoute = ({ component: Component, ...rest }) => (
+  <Route {...rest} render={props => (
+    <Component {...props} {...rest} />
+  )} />
+)
 
 class App extends Component {
   constructor(props) {
@@ -76,40 +76,37 @@ class App extends Component {
     return (
       <MuiThemeProvider muiTheme={getMuiTheme()}>
         <Router>
-        <div>
-          <div className="top-bar">
-            <div className="top-bar-left">
-              <Link to="/">GameHUB</Link>
-          </div>
+          <div>
+            <div className="top-bar">
+              <div className="top-bar-left">
+                <Link to="/">GameHUB</Link>
+              </div>
 
-          {this.state.authenticated ? (
-            <div className="top-bar-right">
-              <Link to="/userslist"><RaisedButton className="nav-button" label="User List" primary={true} style={{ margin: 0 }} /></Link>
-              <Link to="/dashboard"><RaisedButton className="nav-button" label="Dashboard" primary={true} style={{margin: 0}} /></Link>
-              <Link to="/logout"><RaisedButton className="nav-button" label="Logout" secondary={true} style={{margin: 0}} /></Link>
+              {this.state.authenticated ? (
+                <div className="top-bar-right">
+                  <Link to="/userslist"><RaisedButton className="nav-button" label="User List" primary={true} style={{ margin: 0 }} /></Link>
+                  <Link to="/dashboard"><RaisedButton className="nav-button" label="Dashboard" primary={true} style={{ margin: 0 }} /></Link>
+                  <Link to="/logout"><RaisedButton className="nav-button" label="Logout" secondary={true} style={{ margin: 0 }} /></Link>
+                </div>
+              ) : (
+                  <div className="top-bar-right">
+                    <Link to="/userslist"><RaisedButton className="nav-button" label="User List" primary={true} style={{ margin: 0 }} /></Link>
+                    <Link to="/login"><RaisedButton className="nav-button" label="Login" primary={true} style={{ margin: 0 }} /></Link>
+                    <Link to="/signup"><RaisedButton className="nav-button" label="Sign up" style={{ margin: 0 }} backgroundColor="#13c631" labelColor="#ffffff" /></Link>
+                  </div>
+                )}
             </div>
-          ) : (
-            <div className="top-bar-right">
-              <Link to="/userslist"><RaisedButton className="nav-button" label="User List" primary={true} style={{ margin: 0 }} /></Link>
-              <Link to="/login"><RaisedButton className="nav-button" label="Login" primary={true} style={{margin: 0}} /></Link>
-              <Link to="/signup"><RaisedButton className="nav-button" label="Sign up"  style={{margin: 0}} backgroundColor="#13c631" labelColor="#ffffff" /></Link>
-            </div>
-          )}
-              {/* <div className="top-bar-right">
-                <Link to="/userslist"><RaisedButton label="User List" primary={true} style={{ margin: 0 }} /></Link>
-              </div> */}
-        </div>
 
             <PropsRoute exact path="/" component={HomePage} toggleAuthenticateStatus={() => this.toggleAuthenticateStatus()} />
-            <PrivateRoute path="/dashboard" component={DashboardPage}/>
+            <PrivateRoute path="/dashboard" component={DashboardPage} />
             <LoggedOutRoute path="/login" component={LoginPage} toggleAuthenticateStatus={() => this.toggleAuthenticateStatus()} />
-            <LoggedOutRoute path="/signup" component={SignUpPage}/>
-            <Route path="/logout" component={LogoutFunction}/>
-            <Route path="/userslist" component={UserList}/>
-            <Route path="/users/:id" component={UserProfile}/>
+            <LoggedOutRoute path="/signup" component={SignUpPage} />
+            <Route path="/logout" component={LogoutFunction} />
+            <Route path="/userslist" component={UserList} />
+            <Route path="/users/:id" component={UserProfile} />
           </div>
 
-        
+
         </Router>
       </MuiThemeProvider>
     );
