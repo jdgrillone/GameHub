@@ -60,7 +60,7 @@ export default class AddGame extends React.Component {
 
     render() {
         return (
-            <div className="addGame-container">
+            <div className="drawer-button">
                 <RaisedButton
                     label="Add Game"
                     onClick={this.handleToggle}
