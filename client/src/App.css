@@ -94,6 +94,10 @@ a:hover {
   margin: 25px;
 }
 
+.drawer-button {
+  margin: 0;
+}
+
 @media only screen and (max-width: 442px) {
     /* For mobile phones: */
     .top-bar-right {
@@ -111,5 +115,5 @@ a:hover {
     .listItem-container {
       width: 400px;
       margin-left: 10px;      
-    }
+    } 
 }
