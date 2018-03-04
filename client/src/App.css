@@ -98,6 +98,16 @@ a:hover {
   margin: 0;
 }
 
+hr.gradient {
+    border: 0;
+    height: 1px;
+    background: #63C;
+    background-image: -webkit-linear-gradient(left, #C9F, #63C, #C9F);
+    background-image: -moz-linear-gradient(left, #C9F, #63C, #C9F);
+    background-image: -ms-linear-gradient(left, #C9F, #63C, #C9F);
+    background-image: -o-linear-gradient(left, #C9F, #63C, #C9F);
+}
+
 @media only screen and (max-width: 442px) {
     /* For mobile phones: */
     .top-bar-right {

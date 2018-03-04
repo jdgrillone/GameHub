@@ -6,6 +6,9 @@ import FloatingActionButton from 'material-ui/FloatingActionButton';
 import SearchIcon from 'material-ui/svg-icons/action/youtube-searched-for';
 import API from '../utils/API.js';
 import Chip from 'material-ui/Chip';
+import AppBar from 'material-ui/AppBar';
+import FlatButton from 'material-ui/FlatButton';
+
 
 export default class AddGame extends React.Component {
 
@@ -74,6 +77,12 @@ export default class AddGame extends React.Component {
                     onRequestChange={(open) => this.setState({ open })}
                     style={{ padding: '5px' }}
                 >
+                    <AppBar
+                        title={<span>ADD GAME</span>}
+                        iconElementRight={<FlatButton label="Help" />}
+                        showMenuIconButton={false}
+                        style={{backgroundColor: "#13c631"}}
+                    />
                 <div className="drawer-contents">
                     <TextField
                         id="add-game-input"

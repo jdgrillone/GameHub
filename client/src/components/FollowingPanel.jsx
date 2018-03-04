@@ -1,7 +1,10 @@
 import React from 'react';
 import Drawer from 'material-ui/Drawer';
 import RaisedButton from 'material-ui/RaisedButton';
-import Chip from 'material-ui/Chip';
+import AppBar from 'material-ui/AppBar';
+import FlatButton from 'material-ui/FlatButton';
+import {Card, CardHeader, CardText} from 'material-ui/Card';
+import Avatar from 'material-ui/Avatar';
 
 export default class FollowingPanel extends React.Component {
 
@@ -34,14 +37,24 @@ export default class FollowingPanel extends React.Component {
                     onRequestChange={(open) => this.setState({ open })}
                     openSecondary={true}
                 >
-                    <p>Friends!!</p>
+                    <AppBar
+                        title={<span>FRIENDS</span>}
+                        iconElementRight={<FlatButton label="Help" />}
+                        showMenuIconButton={false}
+                        style={{backgroundColor: "#622d9b"}}
+                    />
+                    <br />
+
                     {this.props.friends.map(friend => (
-                        <Chip
-                            key={friend.id}
-                            style={{ padding: "10px" }}
-                        >
-                            {friend.name}
-                        </Chip>
+                        <Card key={friend.id}>
+                        <hr className="gradient" />
+                            <CardHeader 
+                                title={friend.name}
+                                avatar={<Avatar>{friend.name[0]}</Avatar>}
+                            />
+                            <a href={"/users/" + friend.id}><FlatButton label="View Profile" /></a>
+                            
+                        </Card>
                     ))}
                 </ Drawer>
             </div>
