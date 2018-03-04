@@ -13,4 +13,7 @@ router.route("/:id")
 router.route("/delete")
     .post(userController.findOneAndDelete);
 
+router.route("/follow")
+    .post(userController.findOneAndFollow);
+
 module.exports = router;

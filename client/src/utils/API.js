@@ -28,6 +28,10 @@ export default {
 
     deleteGame: function(data) {
         return axios.post("/user/delete", data);
+    },
+
+    followUser: function(data) {
+        return axios.post("/user/follow", data);
     }
 
 }

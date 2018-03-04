@@ -4,6 +4,7 @@ import IconMenu from 'material-ui/IconMenu';
 import MenuItem from 'material-ui/MenuItem';
 import IconButton from 'material-ui/IconButton';
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
+import API from '../utils/API.js';
 
 export default class UserListItem extends React.Component {
 
@@ -12,6 +13,19 @@ export default class UserListItem extends React.Component {
         this.state = {
             
         };
+    }
+
+    followClicked = () => {
+        let data = {
+            userID: this.props.loggedUser,
+            friendName: this.props.name,
+            friendID: this.props.id
+        }
+        API.followUser(data)
+            .then((res) => {
+                console.log("User Followed")
+            })
+            .catch(err => console.log(err));
     }
 
     render() {
@@ -27,7 +41,7 @@ export default class UserListItem extends React.Component {
                     style={{ float: 'right', width: "50px"}}
                 >
                     <a href={'/users/' + this.props.id}><MenuItem primaryText="View Profile" /></a>
-                    <MenuItem primaryText="Follow" />
+                    <MenuItem onClick={this.followClicked} primaryText="Follow" />
                 </IconMenu>
                 </CardHeader>
             </Card>
