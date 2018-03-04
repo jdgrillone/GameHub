@@ -13,7 +13,8 @@ const UserSchema = new mongoose.Schema({
         index: { unique: true }
     },
     games: [],
-    following: []
+    following: [],
+    active: String
 });
 
 /**

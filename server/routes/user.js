@@ -16,4 +16,7 @@ router.route("/delete")
 router.route("/follow")
     .post(userController.findOneAndFollow);
 
+router.route("/active")
+    .post(userController.findOneAndToggle);
+
 module.exports = router;

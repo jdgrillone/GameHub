@@ -66,5 +66,15 @@ module.exports = {
                     res.send(data);
                 });
             });
+    },
+
+    // Route to toggle active game
+    findOneAndToggle: function (req, res) {
+        db.update({ "_id": req.body.userID }, { $set: { "active": req.body.game }}, function(err, data) {
+            if (err) {
+                return res.status(500).json({ 'error': 'error in deleting game'});
+            }
+            res.json(data);
+        });
     }
 };
