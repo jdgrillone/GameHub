@@ -4,6 +4,7 @@ import Toggle from 'material-ui/Toggle';
 import IconButton from 'material-ui/IconButton';
 import ClearIcon from 'material-ui/svg-icons/content/clear';
 import API from '../utils/API.js';
+import FlatButton from 'material-ui/FlatButton';
 
 export default class ListItem extends React.Component {
 
@@ -45,6 +46,18 @@ export default class ListItem extends React.Component {
         .catch(err => console.log(err));
     }
 
+    toggleActive = () => {
+        let data = {
+            userID: this.props.userId,
+            game: this.props.name
+        }
+        API.setActive(data)
+        .then((res) => {
+            this.props.onActive(this.props.name);
+        })
+        .catch(err => console.log(err));
+    }
+
     render() {
         return (
             <Card className="listItem-container" expanded={this.state.expanded} onExpandChange={this.handleExpandChange}>
@@ -65,10 +78,7 @@ export default class ListItem extends React.Component {
                 <CardText expandable={true}>
                     <h3><strong>Summary: </strong></h3>
                     <p>{this.props.summary}</p>
-                    <p>List of URL's</p>
-                    <ul>
-                        <li><a href="www.google.com" target="_blank" className="listItem-link">Link</a></li>
-                    </ul>
+                    <FlatButton label="Set to Active" onClick={this.toggleActive}/>
                     <IconButton tooltip="Delete Entry" onClick={this.gameDelete} touch={true} tooltipPosition="bottom-right" iconStyle={{backgroundColor: "red", borderRadius: "20px"}}>
                     <ClearIcon />
                     </IconButton>

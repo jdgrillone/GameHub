@@ -16,12 +16,14 @@ class DashboardPage extends React.Component {
     this.state = {
       secretData: '',
       user: {
+        active: "",
         following: [],
         games: []
       }
     };
     this.onGameAdd = this.onGameAdd.bind(this);
     this.onDelete = this.onDelete.bind(this);
+    this.onActive = this.onActive.bind(this);
   }
 
 
@@ -65,6 +67,12 @@ class DashboardPage extends React.Component {
     this.setState({ user: newUserState });
   }
 
+  onActive = (game) => {
+    let newUserState = Object.assign({}, this.state.user);
+    newUserState.active = game;
+    this.setState({ user: newUserState });
+  }
+
   // Render the component
   render() {
     return (
@@ -72,7 +80,7 @@ class DashboardPage extends React.Component {
         <Dashboard secretData={this.state.secretData} user={this.state.user} />
         <br />
         <div className="addGame-container">
-        <AddGame userId={this.state.user._id} onGameAdd={this.onGameAdd}/>
+        <AddGame userId={this.state.user._id} onGameAdd={this.onGameAdd} />
         <FollowingPanel friends={this.state.user.following}/>
         </div>
         {/* Handler for empty list message */}
@@ -90,6 +98,7 @@ class DashboardPage extends React.Component {
             summary={games.summary}
             key={games.id}
             onDelete={this.onDelete}
+            onActive={this.onActive}
             userId={this.state.user._id}
           />
         ))}

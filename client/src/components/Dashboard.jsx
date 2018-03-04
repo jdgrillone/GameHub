@@ -6,10 +6,9 @@ import { Card, CardTitle, CardText } from 'material-ui/Card';
 const Dashboard = ({ secretData, user }) => (
   <Card className="container" >
     <CardTitle 
-      title="Dashboard"
-      subtitle=""
+      title={user.name + "'s Dashboard"}
+      subtitle={"Now Playing: " + user.active} 
     />
-    <CardText style={{ fontSize: '16px', color: 'green'}}>Welcome {user.name}!</CardText>
   </Card>
 );
 
