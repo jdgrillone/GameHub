@@ -4,6 +4,7 @@ import Dashboard from '../components/Dashboard.jsx';
 import ListItem from '../components/ListItem.jsx';
 import AddGame from '../components/AddGame.jsx';
 import EmptyListMessage from '../components/EmptyListMessage.jsx';
+import FollowingPanel from '../components/FollowingPanel.jsx';
 
 
 class DashboardPage extends React.Component {
@@ -15,6 +16,7 @@ class DashboardPage extends React.Component {
     this.state = {
       secretData: '',
       user: {
+        following: [],
         games: []
       }
     };
@@ -69,8 +71,10 @@ class DashboardPage extends React.Component {
       <div>
         <Dashboard secretData={this.state.secretData} user={this.state.user} />
         <br />
+        <div className="addGame-container">
         <AddGame userId={this.state.user._id} onGameAdd={this.onGameAdd}/>
-
+        <FollowingPanel friends={this.state.user.following}/>
+        </div>
         {/* Handler for empty list message */}
         {(this.state.user.games.length === 0)
           ? <EmptyListMessage />
