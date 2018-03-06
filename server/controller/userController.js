@@ -52,20 +52,12 @@ module.exports = {
 
     // Route to follow user
     findOneAndFollow: function (req, res) {
+        console.log(req.body);
         db
-            .findById(req.body.userID, function (err, user) {
-                if (err) return res.status(422).json(err);
-
-                data = {
-                    name: req.body.friendName,
-                    id: req.body.friendID
-                }
-                user.following.push(data);
-                user.save(function (err, updatedUser) {
-                    if (err) return res.stus(422).json(err);
-                    res.send(data);
-                });
-            });
+        .update({'_id': req.body.userID}, {'$push': {'following': req.body.friendID}}, function (err, data) {
+            if (err) {console.log(err)}
+            
+        });
     },
 
     // Route to toggle active game
@@ -76,5 +68,14 @@ module.exports = {
             }
             res.json(data);
         });
+    },
+
+    // Route to get following
+    findOnePopulateFollowing: function (req, res) {
+        db.findById(req.params.id).populate({ path: 'following'}).exec(function (err, data) {
+            if (err) {console.log(err)}
+
+            res.json(data.following);
+        })
     }
 };

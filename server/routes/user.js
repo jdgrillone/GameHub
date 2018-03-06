@@ -19,4 +19,7 @@ router.route("/follow")
 router.route("/active")
     .post(userController.findOneAndToggle);
 
+router.route("/:id/following")
+    .get(userController.findOnePopulateFollowing);
+
 module.exports = router;
