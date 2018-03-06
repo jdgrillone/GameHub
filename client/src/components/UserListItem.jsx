@@ -18,7 +18,6 @@ export default class UserListItem extends React.Component {
     followClicked = () => {
         let data = {
             userID: this.props.loggedUser,
-            friendName: this.props.name,
             friendID: this.props.id
         }
         API.followUser(data)

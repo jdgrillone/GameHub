@@ -45,17 +45,19 @@ export default class FollowingPanel extends React.Component {
                     />
                     <br />
 
-                    {this.props.friends.map(friend => (
-                        <Card key={friend.id}>
+                    {this.props.friends ? this.props.friends.map(friend => (
+                        <Card key={friend._id}>
                         <hr className="gradient" />
                             <CardHeader 
                                 title={friend.name}
+                                subtitle={'Now playing: ' + friend.active}
                                 avatar={<Avatar>{friend.name[0]}</Avatar>}
+
                             />
                             <a href={"/users/" + friend.id}><FlatButton label="View Profile" /></a>
                             
                         </Card>
-                    ))}
+                    )): null}
                 </ Drawer>
             </div>
         )

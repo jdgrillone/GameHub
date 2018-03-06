@@ -36,6 +36,10 @@ export default {
 
     setActive: function(data) {
         return axios.post("/user/active", data);
+    },
+
+    getFollowing: function(id) {
+        return axios.get("/user/" + id + "/following");
     }
 
 }

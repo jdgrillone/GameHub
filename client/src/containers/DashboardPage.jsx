@@ -5,6 +5,7 @@ import ListItem from '../components/ListItem.jsx';
 import AddGame from '../components/AddGame.jsx';
 import EmptyListMessage from '../components/EmptyListMessage.jsx';
 import FollowingPanel from '../components/FollowingPanel.jsx';
+import API from '../utils/API.js';
 
 
 class DashboardPage extends React.Component {
@@ -15,9 +16,9 @@ class DashboardPage extends React.Component {
 
     this.state = {
       secretData: '',
+      following: [],
       user: {
         active: "",
-        following: [],
         games: []
       }
     };
@@ -40,11 +41,21 @@ class DashboardPage extends React.Component {
         this.setState({
           secretData: xhr.response.message,
           user: xhr.response.user
-        });
+        },
+      this.getFriends(xhr.response.user._id)
+    );
       }
     });
     xhr.send();
     
+  }
+
+  getFriends (data) {
+      API.getFollowing(data)
+      .then(res => {
+        this.setState({ following: res.data })
+      })
+      .catch( err => console.log(err))
   }
 
   onGameAdd (game) {
@@ -81,7 +92,7 @@ class DashboardPage extends React.Component {
         <br />
         <div className="addGame-container">
         <AddGame userId={this.state.user._id} onGameAdd={this.onGameAdd} />
-        <FollowingPanel friends={this.state.user.following}/>
+        <FollowingPanel friends={this.state.following}/>
         </div>
         {/* Handler for empty list message */}
         {(this.state.user.games.length === 0)
