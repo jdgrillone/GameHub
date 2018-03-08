@@ -40,6 +40,10 @@ export default {
 
     getFollowing: function(id) {
         return axios.get("/user/" + id + "/following");
-    }
+    },
+
+    searchUser: function(name) {
+        return axios.get("/user/search/" + name);
+    } 
 
 }

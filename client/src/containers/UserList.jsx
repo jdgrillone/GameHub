@@ -2,6 +2,10 @@ import React from 'react';
 import API from '../utils/API.js';
 import UserListItem from '../components/UserListItem.jsx';
 import Auth from '../modules/Auth';
+import TextField from 'material-ui/TextField';
+import Card from 'material-ui/Card';
+import FloatingActionButton from 'material-ui/FloatingActionButton';
+import SearchIcon from 'material-ui/svg-icons/action/youtube-searched-for';
 
 class UserList extends React.Component {
 
@@ -10,8 +14,26 @@ class UserList extends React.Component {
         super(props);
 
         this.state = {
-            users: []
+            users: [],
+            fieldValue: "",
         }
+    }
+
+    handleInputChange = (event) => {
+        let value = event.target.value;
+        this.setState({ fieldValue: value });
+    }
+
+    searchUser = (event) => {
+        event.preventDefault();
+        API.searchUser(this.state.fieldValue)
+            .then(res => {
+                this.setState({ users: res.data });
+                if (res.data.length < 1) {
+                    alert("User Not Found");
+                }
+            })
+            .catch(err => console.log(err));
     }
 
     getUsers = () => {
@@ -48,6 +70,22 @@ class UserList extends React.Component {
     render() {
         return (
             <div>
+                <Card
+                    style={{ width: "400px", margin: "0 auto" , paddingBottom: "10px"}}
+                >
+                <TextField
+                    hintText="User Name"
+                    floatingLabelText="Search Users"
+                    onChange={this.handleInputChange}                    
+                    style={{ paddingLeft: "45px" }}
+                />
+                    <FloatingActionButton
+                        mini={true}
+                        onClick={this.searchUser}>
+                        <SearchIcon />
+                    </ FloatingActionButton>
+                </Card>
+                <br />
                 {this.state.users.map(user => (
                     <UserListItem
                         name={user.name}

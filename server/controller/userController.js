@@ -12,7 +12,7 @@ module.exports = {
                     if (err) return res.status(422).json(err);
                     user.games.push(game);
                     user.save(function (err, updatedUser) {
-                        if (err) return res.stus(422).json(err);
+                        if (err) return res.status(422).json(err);
                         res.send(game);
                     });
                 });
@@ -77,5 +77,13 @@ module.exports = {
 
             res.json(data.following);
         })
+    },
+
+    // Route to search Users
+    findUser: function (req, res) {
+        db
+        .find().where({ name: req.params.name})
+        .then(dbModel => res.json(dbModel))
+        .catch(err => res.status(422).json(err))
     }
 };

@@ -22,4 +22,7 @@ router.route("/active")
 router.route("/:id/following")
     .get(userController.findOnePopulateFollowing);
 
+router.route("/search/:name")
+    .get(userController.findUser);
+
 module.exports = router;
