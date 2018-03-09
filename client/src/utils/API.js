@@ -11,7 +11,7 @@ export default {
     },
 
     searchGames: function (gameTitle) {
-        return axios.get("/games/" + gameTitle);
+        return axios.get("/games/search/" + gameTitle);
     },
 
     addGame: function (data) {

@@ -1,4 +1,5 @@
 {
     "dbUri": "mongodb://localhost/gamehub",
-    "jwtSecret": "a secret phrase!!"
+    "jwtSecret": "a secret phrase!!",
+    "igdb_key": "ffb3b6c1f815074d1a524717c119e142"
 }

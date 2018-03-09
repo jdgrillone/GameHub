@@ -90,7 +90,6 @@ class App extends Component {
             </div>
           ) : (
             <div className="top-bar-right">
-              <Link to="/userslist"><RaisedButton className="nav-button" label="User List" primary={true} style={{ margin: 0 }} /></Link>
               <Link to="/login"><RaisedButton className="nav-button" label="Login" primary={true} style={{margin: 0}} /></Link>
               <Link to="/signup"><RaisedButton className="nav-button" label="Sign up"  style={{margin: 0}} backgroundColor="#13c631" labelColor="#ffffff" /></Link>
             </div>

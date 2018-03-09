@@ -58,12 +58,35 @@ export default class ListItem extends React.Component {
         .catch(err => console.log(err));
     }
 
+    parsePlatforms = (array) => {
+        let data = "";
+
+        for (let i = 0; i < array.length; i++) {
+            if (array[i] === 6) {
+                data = data + "-PC- ";
+            }
+            if (array[i] === 48) {
+                data = data + "-PS4- ";
+            }
+            if (array[i] === 49) {
+                data = data + "-Xbox One- ";
+            }
+            if (array[i] === 41) {
+                data = data + "-Wii U- ";
+            }
+            if (array[i] === 130) {
+                data = data + "-Switch- ";
+            }
+        }
+        return data;
+    }
+
     render() {
         return (
             <Card className="listItem-container" expanded={this.state.expanded} onExpandChange={this.handleExpandChange}>
                 <CardHeader
                     title={this.props.name}
-                    subtitle={this.props.platform.join(", ")}
+                    subtitle={this.parsePlatforms(this.props.platforms)}
                     actAsExpander={false}
                     showExpandableButton={false}
                     >
@@ -76,8 +99,7 @@ export default class ListItem extends React.Component {
                     />
                 </CardHeader>
                 <CardText expandable={true}>
-                    <h3><strong>Summary: </strong></h3>
-                    <p>{this.props.summary}</p>
+                    <a href={this.props.url}><img src={this.props.cover} alt={this.props.name} height="90" width="90"></img></a>
                     <FlatButton label="Set to Active" onClick={this.toggleActive}/>
                     <IconButton tooltip="Delete Entry" onClick={this.gameDelete} touch={true} tooltipPosition="bottom-right" iconStyle={{backgroundColor: "red", borderRadius: "20px"}}>
                     <ClearIcon />

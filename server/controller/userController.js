@@ -1,5 +1,8 @@
 const db = require("../models/user.js");
 const gameDb = require("../models/game.js");
+const igdb = require('igdb-api-node').default;
+const config = require("../../config/index.json");
+const client = igdb(config.igdb_key);
 
 module.exports = {
     // Route to update game list for one user
@@ -8,14 +11,30 @@ module.exports = {
             .findById(req.body.userID, function (err, user) {
                 if (err) return res.status(422).json(err);
 
-                gameDb.findById(req.body.gameID, function (err, game) {
-                    if (err) return res.status(422).json(err);
-                    user.games.push(game);
+                client.games(
+                    {
+                        ids: [
+                            req.body.gameID
+                        ]
+                    },
+                [
+                    'id', 'name', 'url', 'cover', 'game', 'platforms'
+                ]).then(response => {
+                    user.games.push(response.body[0]);
                     user.save(function (err, updatedUser) {
                         if (err) return res.status(422).json(err);
-                        res.send(game);
+                        res.send(response);
                     });
                 });
+                
+                // gameDb.findById(req.body.gameID, function (err, game) {
+                //     if (err) return res.status(422).json(err);
+                //     user.games.push(game);
+                //     user.save(function (err, updatedUser) {
+                //         if (err) return res.status(422).json(err);
+                //         res.send(game);
+                //     });
+                // });
             });
     },
 

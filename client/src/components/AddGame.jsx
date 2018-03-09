@@ -17,7 +17,7 @@ export default class AddGame extends React.Component {
         this.state = {
             open: false,
             fieldValue: "",
-            gamesResult: [],
+            gamesResult: []
         };
     }
 
@@ -32,7 +32,7 @@ export default class AddGame extends React.Component {
         event.preventDefault();
         API.searchGames(this.state.fieldValue)
             .then(res => {
-                this.setState({ gamesResult: res.data });
+                this.setState({ gamesResult: res.data.body });
                 if (res.data.length < 1) {
                     alert("Game not found");
                 }
@@ -40,15 +40,16 @@ export default class AddGame extends React.Component {
             .catch(err => console.log(err));
     }
 
-    addGame = () => {
+    addGame = (id) => {
         let data = {
             userID: this.props.userId,
-            gameID: this.state.gamesResult[0]._id
+            gameID: id
         }
         API.addGame(data)
             .then((res) => {
+                console.log(res.data);
                 this.handleClose();
-                this.props.onGameAdd(res.data);
+                this.props.onGameAdd(res.data.body[0]);
                 this.setState({ gamesResult: [] });
                 this.setState({ fieldValue: "" });
             })
@@ -100,7 +101,7 @@ export default class AddGame extends React.Component {
                         <Chip
                             id={game.id}
                             key={game.id}
-                            onClick={this.addGame}
+                            onClick={() => this.addGame(game.id)}
                             style={{ padding: "10px" }}
                         >
                             {game.name}

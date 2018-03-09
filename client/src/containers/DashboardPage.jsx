@@ -104,10 +104,10 @@ class DashboardPage extends React.Component {
           <ListItem
             name={games.name}
             id={games.id}
-            notes={games.notes}
-            platform={games.platform}
-            summary={games.summary}
             key={games.id}
+            url={games.url}
+            cover={games.cover.url}
+            platforms={games.platforms}
             onDelete={this.onDelete}
             onActive={this.onActive}
             userId={this.state.user._id}

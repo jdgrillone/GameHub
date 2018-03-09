@@ -6,5 +6,8 @@ router.route("/")
 
 router.route("/:name")
   .get(gameController.findOne);
+
+router.route("/search/:name")
+  .get(gameController.igdbFind);
   
 module.exports = router;
