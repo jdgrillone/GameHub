@@ -22,6 +22,7 @@ export default class FollowingPanel extends React.Component {
     handleClose = () => this.setState({ open: false });
 
     render() {
+        console.log(this.props.friends);
         return (
             <div className="drawer-button">
             <RaisedButton
@@ -54,7 +55,7 @@ export default class FollowingPanel extends React.Component {
                                 avatar={<Avatar>{friend.name[0]}</Avatar>}
 
                             />
-                            <a href={"/users/" + friend.id}><FlatButton label="View Profile" /></a>
+                            <a href={"/users/" + friend._id}><FlatButton label="View Profile" /></a>
                             
                         </Card>
                     )): null}
