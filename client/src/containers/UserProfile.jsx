@@ -36,9 +36,9 @@ class UserProfile extends React.Component {
                 {this.state.user.games.map(games => (
                     <ProfileItem
                         name={games.name}
-                        notes={games.notes}
-                        platform={games.platform}
-                        summary={games.summary}
+                        url={games.url}
+                        platforms={games.platforms}
+                        cover={games.cover.url}
                         key={games.id}
                     />
                 ))}
