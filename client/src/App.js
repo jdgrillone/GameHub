@@ -96,6 +96,16 @@ class App extends Component {
                   </div>
                 )}
             </div>
+          ) : (
+            <div className="top-bar-right">
+              <Link to="/login"><RaisedButton className="nav-button" label="Login" primary={true} style={{margin: 0}} /></Link>
+              <Link to="/signup"><RaisedButton className="nav-button" label="Sign up"  style={{margin: 0}} backgroundColor="#13c631" labelColor="#ffffff" /></Link>
+            </div>
+          )}
+              {/* <div className="top-bar-right">
+                <Link to="/userslist"><RaisedButton label="User List" primary={true} style={{ margin: 0 }} /></Link>
+              </div> */}
+        </div>
 
             <PropsRoute exact path="/" component={HomePage} toggleAuthenticateStatus={() => this.toggleAuthenticateStatus()} />
             <PrivateRoute path="/dashboard" component={DashboardPage} />

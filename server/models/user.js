@@ -13,7 +13,10 @@ const UserSchema = new mongoose.Schema({
         index: { unique: true }
     },
     games: [],
-    following: []
+    following: [{ 
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User' }],
+    active: String
 });
 
 /**

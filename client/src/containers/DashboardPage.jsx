@@ -4,6 +4,8 @@ import Dashboard from '../components/Dashboard.jsx';
 import ListItem from '../components/ListItem.jsx';
 import AddGame from '../components/AddGame.jsx';
 import EmptyListMessage from '../components/EmptyListMessage.jsx';
+import FollowingPanel from '../components/FollowingPanel.jsx';
+import API from '../utils/API.js';
 
 
 class DashboardPage extends React.Component {
@@ -14,12 +16,15 @@ class DashboardPage extends React.Component {
 
     this.state = {
       secretData: '',
+      following: [],
       user: {
+        active: "",
         games: []
       }
     };
     this.onGameAdd = this.onGameAdd.bind(this);
     this.onDelete = this.onDelete.bind(this);
+    this.onActive = this.onActive.bind(this);
   }
 
 
@@ -36,11 +41,21 @@ class DashboardPage extends React.Component {
         this.setState({
           secretData: xhr.response.message,
           user: xhr.response.user
-        });
+        },
+      this.getFriends(xhr.response.user._id)
+    );
       }
     });
     xhr.send();
     
+  }
+
+  getFriends (data) {
+      API.getFollowing(data)
+      .then(res => {
+        this.setState({ following: res.data })
+      })
+      .catch( err => console.log(err))
   }
 
   onGameAdd (game) {
@@ -63,14 +78,22 @@ class DashboardPage extends React.Component {
     this.setState({ user: newUserState });
   }
 
+  onActive = (game) => {
+    let newUserState = Object.assign({}, this.state.user);
+    newUserState.active = game;
+    this.setState({ user: newUserState });
+  }
+
   // Render the component
   render() {
     return (
       <div>
         <Dashboard secretData={this.state.secretData} user={this.state.user} />
         <br />
-        <AddGame userId={this.state.user._id} onGameAdd={this.onGameAdd}/>
-
+        <div className="addGame-container">
+        <AddGame userId={this.state.user._id} onGameAdd={this.onGameAdd} />
+        <FollowingPanel friends={this.state.following}/>
+        </div>
         {/* Handler for empty list message */}
         {(this.state.user.games.length === 0)
           ? <EmptyListMessage />
@@ -81,11 +104,12 @@ class DashboardPage extends React.Component {
           <ListItem
             name={games.name}
             id={games.id}
-            notes={games.notes}
-            platform={games.platform}
-            summary={games.summary}
             key={games.id}
+            url={games.url}
+            cover={games.cover.url}
+            platforms={games.platforms}
             onDelete={this.onDelete}
+            onActive={this.onActive}
             userId={this.state.user._id}
           />
         ))}

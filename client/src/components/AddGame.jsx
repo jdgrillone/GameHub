@@ -6,6 +6,9 @@ import FloatingActionButton from 'material-ui/FloatingActionButton';
 import SearchIcon from 'material-ui/svg-icons/action/youtube-searched-for';
 import API from '../utils/API.js';
 import Chip from 'material-ui/Chip';
+import AppBar from 'material-ui/AppBar';
+import FlatButton from 'material-ui/FlatButton';
+
 
 export default class AddGame extends React.Component {
 
@@ -14,7 +17,7 @@ export default class AddGame extends React.Component {
         this.state = {
             open: false,
             fieldValue: "",
-            gamesResult: [],
+            gamesResult: []
         };
     }
 
@@ -29,7 +32,7 @@ export default class AddGame extends React.Component {
         event.preventDefault();
         API.searchGames(this.state.fieldValue)
             .then(res => {
-                this.setState({ gamesResult: res.data });
+                this.setState({ gamesResult: res.data.body });
                 if (res.data.length < 1) {
                     alert("Game not found");
                 }
@@ -37,15 +40,16 @@ export default class AddGame extends React.Component {
             .catch(err => console.log(err));
     }
 
-    addGame = () => {
+    addGame = (id) => {
         let data = {
             userID: this.props.userId,
-            gameID: this.state.gamesResult[0]._id
+            gameID: id
         }
         API.addGame(data)
             .then((res) => {
+                console.log(res.data);
                 this.handleClose();
-                this.props.onGameAdd(res.data);
+                this.props.onGameAdd(res.data.body[0]);
                 this.setState({ gamesResult: [] });
                 this.setState({ fieldValue: "" });
             })
@@ -60,7 +64,7 @@ export default class AddGame extends React.Component {
 
     render() {
         return (
-            <div className="addGame-container">
+            <div className="drawer-button">
                 <RaisedButton
                     label="Add Game"
                     onClick={this.handleToggle}
@@ -74,6 +78,12 @@ export default class AddGame extends React.Component {
                     onRequestChange={(open) => this.setState({ open })}
                     style={{ padding: '5px' }}
                 >
+                    <AppBar
+                        title={<span>ADD GAME</span>}
+                        iconElementRight={<FlatButton label="Help" />}
+                        showMenuIconButton={false}
+                        style={{backgroundColor: "#13c631"}}
+                    />
                 <div className="drawer-contents">
                     <TextField
                         id="add-game-input"
@@ -91,7 +101,7 @@ export default class AddGame extends React.Component {
                         <Chip
                             id={game.id}
                             key={game.id}
-                            onClick={this.addGame}
+                            onClick={() => this.addGame(game.id)}
                             style={{ padding: "10px" }}
                         >
                             {game.name}

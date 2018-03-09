@@ -11,7 +11,7 @@ export default {
     },
 
     searchGames: function (gameTitle) {
-        return axios.get("/games/" + gameTitle);
+        return axios.get("/games/search/" + gameTitle);
     },
 
     addGame: function (data) {
@@ -28,6 +28,22 @@ export default {
 
     deleteGame: function(data) {
         return axios.post("/user/delete", data);
-    }
+    },
+
+    followUser: function(data) {
+        return axios.post("/user/follow", data);
+    },
+
+    setActive: function(data) {
+        return axios.post("/user/active", data);
+    },
+
+    getFollowing: function(id) {
+        return axios.get("/user/" + id + "/following");
+    },
+
+    searchUser: function(name) {
+        return axios.get("/user/search/" + name);
+    } 
 
 }
