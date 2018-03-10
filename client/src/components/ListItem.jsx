@@ -58,6 +58,7 @@ export default class ListItem extends React.Component {
         .catch(err => console.log(err));
     }
 
+    // Parser for API's platform ID's
     parsePlatforms = (array) => {
         let data = "";
 

@@ -6,7 +6,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import RaisedButton from 'material-ui/RaisedButton';
 import FlatButton from 'material-ui/FlatButton';
 
-
+// Router
 import {
   BrowserRouter as Router,
   Route,
@@ -108,9 +108,6 @@ class App extends Component {
                   </div>
                 )}
             </div>
-              {/* <div className="top-bar-right">
-                <Link to="/userslist"><RaisedButton label="User List" primary={true} style={{ margin: 0 }} /></Link>
-              </div> */}
 
             <PropsRoute exact path="/" component={HomePage} toggleAuthenticateStatus={() => this.toggleAuthenticateStatus()} />
             <PrivateRoute path="/dashboard" component={DashboardPage} />

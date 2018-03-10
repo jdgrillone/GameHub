@@ -1,5 +1,9 @@
+// Require User Model
 const db = require("../models/user.js");
+// Require model for local games db (depricated)
 const gameDb = require("../models/game.js");
+
+// Require IGDB node modul and configure
 const igdb = require('igdb-api-node').default;
 const config = require("../../config/index.json");
 const client = igdb(config.igdb_key);
@@ -11,6 +15,7 @@ module.exports = {
             .findById(req.body.userID, function (err, user) {
                 if (err) return res.status(422).json(err);
 
+                // Make API call for game to be added
                 client.games(
                     {
                         ids: [
@@ -20,13 +25,14 @@ module.exports = {
                 [
                     'id', 'name', 'url', 'cover', 'game', 'platforms'
                 ]).then(response => {
-                    user.games.push(response.body[0]);
+                    user.games.push(response.body[0]);  // Push result to user's array
                     user.save(function (err, updatedUser) {
                         if (err) return res.status(422).json(err);
                         res.send(response);
                     });
                 });
                 
+                // --OLD CODE FOR LOCAL GAME DB--
                 // gameDb.findById(req.body.gameID, function (err, game) {
                 //     if (err) return res.status(422).json(err);
                 //     user.games.push(game);

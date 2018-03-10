@@ -22,18 +22,20 @@ class DashboardPage extends React.Component {
         games: []
       }
     };
+    // Binding functions to maintain proper state
     this.onGameAdd = this.onGameAdd.bind(this);
     this.onDelete = this.onDelete.bind(this);
     this.onActive = this.onActive.bind(this);
   }
 
 
-  // This method will be executed after initial rendering.
+
   componentDidMount() {
+    // Method to update state to with loggeed user information
     const xhr = new XMLHttpRequest();
     xhr.open('get', '/api/dashboard');
     xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-    // set the authorization HTTP header
+    // Set the authorization HTTP header
     xhr.setRequestHeader('Authorization', `bearer ${Auth.getToken()}`);
     xhr.responseType = 'json';
     xhr.addEventListener('load', () => {
@@ -42,7 +44,7 @@ class DashboardPage extends React.Component {
           secretData: xhr.response.message,
           user: xhr.response.user
         },
-      this.getFriends(xhr.response.user._id)
+      this.getFriends(xhr.response.user._id) // Callback function once setState is complete
     );
       }
     });
@@ -50,6 +52,7 @@ class DashboardPage extends React.Component {
     
   }
 
+  // Function to get list of friends
   getFriends (data) {
       API.getFollowing(data)
       .then(res => {
@@ -58,6 +61,7 @@ class DashboardPage extends React.Component {
       .catch( err => console.log(err))
   }
 
+  // Callback function which is called when a game is added to the User model.  Updates current state with change
   onGameAdd (game) {
     let newUserState = Object.assign({}, this.state.user);
     let newGamesArray = this.state.user.games.slice();
@@ -78,6 +82,7 @@ class DashboardPage extends React.Component {
     this.setState({ user: newUserState });
   }
 
+  // Callback function which is called when user sets a game to "Active".  Updates current state with change
   onActive = (game) => {
     let newUserState = Object.assign({}, this.state.user);
     newUserState.active = game;
