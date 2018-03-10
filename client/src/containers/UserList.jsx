@@ -70,8 +70,8 @@ class UserList extends React.Component {
     render() {
         return (
             <div>
-                <Card
-                    style={{ width: "400px", margin: "0 auto" , paddingBottom: "10px"}}
+                <Card className="user-search-input"
+                    style={{margin: "0 auto" , paddingBottom: "10px"}}
                 >
                 <TextField
                     hintText=""

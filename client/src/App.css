@@ -1,6 +1,7 @@
 body {
   margin: 0;
   font-size: 16px;
+  width: auto;
 }
 
 a {
@@ -121,6 +122,10 @@ a:hover {
   border-top-style: solid; */
 }
 
+.user-search-input {
+  width: 400px;
+}
+
 hr.gradient {
     border: 0;
     height: 1px;
@@ -140,8 +145,35 @@ hr.pg-gradient {
     background-image: -o-linear-gradient(left, #13c631, rgb(255, 255, 255), #63C);
 }
 
+.loader {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 1;
+  width: 120px;
+  height: 120px;
+  margin: -75px 0 0 -75px;
+  border-radius: 50%;
+  border-top: 16px solid #63C;
+  border-bottom: 16px solid #ffffff;
+  border-left: 16px solid #ffffff;
+  border-right: 16px solid #ffffff;
+  width: 120px;
+  height: 120px;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
 @media only screen and (max-width: 442px) {
     /* For mobile phones: */
+    .body {
+      width: auto;
+    }
     .top-bar-right {
         width: 100%;
         margin-top: 10px;
@@ -151,16 +183,27 @@ hr.pg-gradient {
       width: 33%;
     }
     .container {
-      width: 400px;
-      margin-left: 10px;
+      width: 350px;
+      margin-left: 5px;
+      margin-right: 5px;
+      margin-top: 15px;
     }
     .listItem-container {
-      width: 400px;
-      margin-left: 10px;      
+      width: 350px;
+      margin-left: 5px;
+      margin-right: 5px;    
     } 
     .action-container {
       margin: 0 auto;
-      width: 500px;
-      padding-left: 100px;
+      width: 265px;
+      padding-left: 40px;
+    }
+    .userListItem-container {
+      width: 350px;
+      margin-left: 5px;
+      margin-right: 5px;
+    }
+    .user-search-input {
+      width: 365px;
     }
 }

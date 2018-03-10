@@ -81,7 +81,7 @@ export default class AddGame extends React.Component {
                 />
                 <Drawer
                     docked={false}
-                    width={350}
+                    width={300}
                     open={this.state.open}
                     onRequestChange={(open) => this.setState({ open })}
                 >
@@ -109,7 +109,7 @@ export default class AddGame extends React.Component {
                             id={game.id}
                             key={game.id}
                             onClick={() => this.addGame(game.id)}
-                            style={{ padding: "10px" }}
+                            style={{ padding: "10px", margin: "5px" }}
                         >
                             {game.name}
                         </Chip>

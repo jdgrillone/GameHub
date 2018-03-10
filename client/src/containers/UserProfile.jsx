@@ -16,13 +16,17 @@ class UserProfile extends React.Component {
             user: {
                 games: []
             },
-            loggedUser: ""
+            loggedUser: "",
+            isLoaded: false
         };
     }
 
     componentWillMount() {
         API.getUser(this.props.match.params.id)
-            .then(res => this.setState({ user: res.data }))
+            .then(res => { 
+                this.setState({ user: res.data });
+                this.setState({ isLoaded: true });
+        })
             .catch(err => console.log(err));
     }
 
@@ -57,10 +61,12 @@ class UserProfile extends React.Component {
     }
 
     render() {
-        console.log(this.state.loggedUser);
         return (
             <div>
-                {/* <p>Welcome to {this.state.user.name}'s List</p> */}
+            
+            {this.state.isLoaded === true ? (
+                
+                <div>
                 <Card className="container" >
                     <CardTitle
                         title={this.state.user.name + "'s Profile"}
@@ -78,6 +84,11 @@ class UserProfile extends React.Component {
                         key={games.id}
                     />
                 ))}
+                </div>
+            ) : (
+                <div className="loader"></div>
+            )
+            }
             </div>
         );
     }

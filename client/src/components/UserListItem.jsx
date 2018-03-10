@@ -33,6 +33,7 @@ export default class UserListItem extends React.Component {
                 <CardHeader
                 title={this.props.name}
                 subtitle={'Now playing: ' + this.props.active}
+                textStyle={{ paddingRight: "0px" }}
                 >
                 <IconMenu
                     iconButtonElement={<IconButton><MoreVertIcon /></IconButton>}
