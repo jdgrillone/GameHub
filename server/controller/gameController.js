@@ -3,9 +3,10 @@ const db = require("../models/game.js");
 
 // Require IGDB npm package and api-key
 const igdb = require('igdb-api-node').default;
-const config = require("../../config/index.json");
+const ENV = require('../../server.js');
+
 // Configure igdb client with api-key
-const client = igdb(config.igdb_key);
+const client = igdb(ENV.IGDB_KEY);
 
 module.exports = {
     // Route for all games (local db only)

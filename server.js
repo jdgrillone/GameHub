@@ -1,10 +1,15 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const passport = require('passport');
-const config = require('./config');
+// const config = require('./config');
+
+module.exports = {
+  JWT_SECRET: process.env.JWT_SECRET,
+  IGDB_KEY: process.env.IGDB_KEY
+}
 
 // connect to the database and load models
-require('./server/models').connect(process.env.MONGODB_URI || config.dbUri);
+require('./server/models').connect(process.env.MONGODB_URI || "mongodb://localhost/gamehub");
 
 
 // --CONFIGURE EXPRESS WEB FRAMEWORK--

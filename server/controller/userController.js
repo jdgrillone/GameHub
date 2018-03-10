@@ -5,8 +5,9 @@ const gameDb = require("../models/game.js");
 
 // Require IGDB node modul and configure
 const igdb = require('igdb-api-node').default;
-const config = require("../../config/index.json");
-const client = igdb(config.igdb_key);
+const ENV = require('../../server.js');
+
+const client = igdb(ENV.IGDB_KEY);
 
 module.exports = {
     // Route to update game list for one user
