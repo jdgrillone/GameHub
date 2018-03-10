@@ -71,7 +71,6 @@ module.exports = {
 
     // Route to follow user
     findOneAndFollow: function (req, res) {
-        console.log(req.body);
         db
         .update({'_id': req.body.userID}, {'$push': {'following': req.body.friendID}}, function (err, data) {
             if (err) {console.log(err)}

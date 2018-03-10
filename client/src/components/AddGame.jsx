@@ -7,7 +7,7 @@ import SearchIcon from 'material-ui/svg-icons/action/youtube-searched-for';
 import API from '../utils/API.js';
 import Chip from 'material-ui/Chip';
 import AppBar from 'material-ui/AppBar';
-import FlatButton from 'material-ui/FlatButton';
+import HelpDialogue from './HelpDialogue.jsx';
 
 
 export default class AddGame extends React.Component {
@@ -20,6 +20,14 @@ export default class AddGame extends React.Component {
             gamesResult: []
         };
     }
+
+    helpMessage = (
+    <div>
+    <p>1. Type a game title into the input field.</p>
+    <p>2. Click Search button.</p>
+    <p>3. Click on the desired result to add the game to your list.</p>
+    </div>
+    )
 
     // Handles toggle for AddGame Drawer
     handleToggle = () => this.setState({ open: !this.state.open });
@@ -47,7 +55,6 @@ export default class AddGame extends React.Component {
         }
         API.addGame(data)
             .then((res) => {
-                console.log(res.data);
                 this.handleClose();
                 this.props.onGameAdd(res.data.body[0]);
                 this.setState({ gamesResult: [] });
@@ -64,23 +71,23 @@ export default class AddGame extends React.Component {
 
     render() {
         return (
-            <div className="drawer-button">
+            <span className="drawer-button">
                 <RaisedButton
                     label="Add Game"
                     onClick={this.handleToggle}
                     backgroundColor="#13c631"
                     labelColor="#ffffff"
+                    style={{float: 'left', marginRight: '20px'}}
                 />
                 <Drawer
                     docked={false}
                     width={350}
                     open={this.state.open}
                     onRequestChange={(open) => this.setState({ open })}
-                    style={{ padding: '5px' }}
                 >
                     <AppBar
                         title={<span>ADD GAME</span>}
-                        iconElementRight={<FlatButton label="Help" />}
+                        iconElementRight={<HelpDialogue title="Add Game Help" message={this.helpMessage}/>}
                         showMenuIconButton={false}
                         style={{backgroundColor: "#13c631"}}
                     />
@@ -109,7 +116,7 @@ export default class AddGame extends React.Component {
                     ))}
                 </div>
                 </Drawer>
-            </div>
+            </span>
         );
     }
 }

@@ -45,7 +45,7 @@ class UserList extends React.Component {
     }
 
     componentWillMount() {
-        this.getUsers();
+
     }
 
     // This method will be executed after initial rendering.
@@ -74,7 +74,7 @@ class UserList extends React.Component {
                     style={{ width: "400px", margin: "0 auto" , paddingBottom: "10px"}}
                 >
                 <TextField
-                    hintText="User Name"
+                    hintText=""
                     floatingLabelText="Search Users"
                     onChange={this.handleInputChange}                    
                     style={{ paddingLeft: "45px" }}
@@ -91,6 +91,7 @@ class UserList extends React.Component {
                         name={user.name}
                         id={user._id}
                         key={user._id}
+                        active={user.active}
                         loggedUser={this.state.user._id} />
                 ))}
             </div>

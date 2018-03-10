@@ -84,6 +84,8 @@ export default class ListItem extends React.Component {
     render() {
         return (
             <Card className="listItem-container" expanded={this.state.expanded} onExpandChange={this.handleExpandChange}>
+                <hr className="pg-gradient" />
+            
                 <CardHeader
                     title={this.props.name}
                     subtitle={this.parsePlatforms(this.props.platforms)}
@@ -99,9 +101,9 @@ export default class ListItem extends React.Component {
                     />
                 </CardHeader>
                 <CardText expandable={true}>
-                    <a href={this.props.url}><img src={this.props.cover} alt={this.props.name} height="90" width="90"></img></a>
-                    <FlatButton label="Set to Active" onClick={this.toggleActive}/>
-                    <IconButton tooltip="Delete Entry" onClick={this.gameDelete} touch={true} tooltipPosition="bottom-right" iconStyle={{backgroundColor: "red", borderRadius: "20px"}}>
+                    <a href={this.props.url}><img src={this.props.cover} alt={this.props.name}  height="90" width="90"></img></a>
+                    <FlatButton  label="Set to Active" onClick={this.toggleActive}/>
+                    <IconButton style={{float: 'right'}} tooltip="Delete Entry" onClick={this.gameDelete} touch={true} tooltipPosition="bottom-right" iconStyle={{backgroundColor: "red", borderRadius: "20px"}}>
                     <ClearIcon />
                     </IconButton>
                 

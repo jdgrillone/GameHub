@@ -32,17 +32,18 @@ export default class UserListItem extends React.Component {
             <Card className="userListItem-container">
                 <CardHeader
                 title={this.props.name}
+                subtitle={'Now playing: ' + this.props.active}
                 >
                 <IconMenu
                     iconButtonElement={<IconButton><MoreVertIcon /></IconButton>}
-                    anchorOrigin={{ horizontal: 'left', vertical: 'top' }}
+                    anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
                     targetOrigin={{ horizontal: 'left', vertical: 'top' }}
                     style={{ float: 'right', width: "50px"}}
-                >
+                    >
                     <a href={'/users/' + this.props.id}><MenuItem primaryText="View Profile" /></a>
                     <MenuItem onClick={this.followClicked} primaryText="Follow" />
                 </IconMenu>
-                </CardHeader>
+                    </CardHeader>
             </Card>
         );
     }

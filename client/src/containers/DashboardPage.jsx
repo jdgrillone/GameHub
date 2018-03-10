@@ -90,10 +90,11 @@ class DashboardPage extends React.Component {
       <div>
         <Dashboard secretData={this.state.secretData} user={this.state.user} />
         <br />
-        <div className="addGame-container">
+        <div className="action-container">
         <AddGame userId={this.state.user._id} onGameAdd={this.onGameAdd} />
         <FollowingPanel friends={this.state.following}/>
         </div>
+        <br />
         {/* Handler for empty list message */}
         {(this.state.user.games.length === 0)
           ? <EmptyListMessage />

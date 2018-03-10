@@ -21,7 +21,9 @@ a:hover {
 
 .top-bar {
   padding: 10px 15px;
-  margin-bottom: 50px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  background-color: #1e2343;
 }
 .top-bar::after {
   content: '';
@@ -76,10 +78,10 @@ a:hover {
   color: purple;
 }
 
-.addGame-container {
+.action-container {
   margin: 0 auto;
-  margin-bottom: 5px;
   width: 500px;
+  padding-left: 283px;
 }
 
 .userListItem-container {
@@ -95,7 +97,28 @@ a:hover {
 }
 
 .drawer-button {
-  margin: 0;
+  margin: 0 auto;
+  width: 105px;
+}
+
+.test {
+  color: white;
+  font-size: 24px;
+}
+
+.test-sub {
+  color: white;
+}
+
+.header-container {
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+  /* background-color: #303030; */
+  padding-top: 30px;
+  padding-bottom: 30px;
+  /* border-top: #303030;
+  border-top-style: solid; */
 }
 
 hr.gradient {
@@ -106,6 +129,15 @@ hr.gradient {
     background-image: -moz-linear-gradient(left, #C9F, #63C, #C9F);
     background-image: -ms-linear-gradient(left, #C9F, #63C, #C9F);
     background-image: -o-linear-gradient(left, #C9F, #63C, #C9F);
+}
+hr.pg-gradient {
+    border: 0;
+    height: 1px;
+    background: rgb(255, 255, 255);
+    background-image: -webkit-linear-gradient(left, #13c631, rgb(255, 255, 255), #63C);
+    background-image: -moz-linear-gradient(left, #13c631, rgb(255, 255, 255), #63C);
+    background-image: -ms-linear-gradient(left, #13c631, rgb(255, 255, 255), #63C);
+    background-image: -o-linear-gradient(left, #13c631, rgb(255, 255, 255), #63C);
 }
 
 @media only screen and (max-width: 442px) {
@@ -126,4 +158,9 @@ hr.gradient {
       width: 400px;
       margin-left: 10px;      
     } 
+    .action-container {
+      margin: 0 auto;
+      width: 500px;
+      padding-left: 100px;
+    }
 }

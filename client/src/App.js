@@ -4,6 +4,8 @@ import React, { Component } from 'react';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import RaisedButton from 'material-ui/RaisedButton';
+import FlatButton from 'material-ui/FlatButton';
+
 
 import {
   BrowserRouter as Router,
@@ -26,6 +28,17 @@ import UserProfile from './containers/UserProfile.jsx';
 
 // Other imports
 import './App.css';
+
+// Customizing Theme
+const muiTheme = getMuiTheme({
+  palette: {
+    textColor: '#ffffff',
+    canvasColor: '#303030',
+    secondaryTextColor: '#ffffff',
+    disabledColor: '#ffffff',
+  },
+
+});
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route {...rest} render={props => (
@@ -74,7 +87,7 @@ class App extends Component {
 
   render() {
     return (
-      <MuiThemeProvider muiTheme={getMuiTheme()}>
+      <MuiThemeProvider muiTheme={muiTheme}>
         <Router>
           <div>
             <div className="top-bar">
@@ -84,13 +97,13 @@ class App extends Component {
 
               {this.state.authenticated ? (
                 <div className="top-bar-right">
-                  <Link to="/userslist"><RaisedButton className="nav-button" label="User List" primary={true} style={{ margin: 0 }} /></Link>
-                  <Link to="/dashboard"><RaisedButton className="nav-button" label="Dashboard" primary={true} style={{ margin: 0 }} /></Link>
+                  <Link to="/userslist"><FlatButton className="nav-button" label="User List"  style={{ margin: 0 }} /></Link>
+                  <Link to="/dashboard"><FlatButton className="nav-button" label="Dashboard"  style={{ margin: 0 }} /></Link>
                   <Link to="/logout"><RaisedButton className="nav-button" label="Logout" secondary={true} style={{ margin: 0 }} /></Link>
                 </div>
               ) : (
                   <div className="top-bar-right">
-                    <Link to="/login"><RaisedButton className="nav-button" label="Login" primary={true} style={{ margin: 0 }} /></Link>
+                    <Link to="/login"><FlatButton className="nav-button" label="Login"  style={{ margin: 0 }} /></Link>
                     <Link to="/signup"><RaisedButton className="nav-button" label="Sign up" style={{ margin: 0 }} backgroundColor="#13c631" labelColor="#ffffff" /></Link>
                   </div>
                 )}

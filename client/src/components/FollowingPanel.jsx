@@ -3,8 +3,11 @@ import Drawer from 'material-ui/Drawer';
 import RaisedButton from 'material-ui/RaisedButton';
 import AppBar from 'material-ui/AppBar';
 import FlatButton from 'material-ui/FlatButton';
-import {Card, CardHeader, CardText} from 'material-ui/Card';
+import {Card, CardHeader} from 'material-ui/Card';
 import Avatar from 'material-ui/Avatar';
+import HelpDialogue from './HelpDialogue.jsx';
+
+
 
 export default class FollowingPanel extends React.Component {
 
@@ -15,6 +18,16 @@ export default class FollowingPanel extends React.Component {
         };
     }
 
+    helpMessage = (
+    <div>
+        <p>This is where your people you are following are listed!</p>
+        <p>To add someone to your friends list:</p>
+        <p>  -  Go to the <a href="/userslist">User List</a> page to search for a friends name.</p>
+        <p>  -  Click on the three dots next to their name to open a menu.</p>
+        <p>  -  Then click follow.  It's that easy! </p>
+    </div>
+    )
+
     // Handles toggle for Following Drawer
     handleToggle = () => this.setState({ open: !this.state.open });
 
@@ -22,14 +35,14 @@ export default class FollowingPanel extends React.Component {
     handleClose = () => this.setState({ open: false });
 
     render() {
-        console.log(this.props.friends);
         return (
-            <div className="drawer-button">
+            <span className="drawer-button">
             <RaisedButton
                 label="Friends"
                 onClick={this.handleToggle}
                 backgroundColor="#622d9b"
                 labelColor="#ffffff"
+                style={{width: "102px"}}
             />
                 <Drawer
                     docked={false}
@@ -40,7 +53,7 @@ export default class FollowingPanel extends React.Component {
                 >
                     <AppBar
                         title={<span>FRIENDS</span>}
-                        iconElementRight={<FlatButton label="Help" />}
+                        iconElementRight={<HelpDialogue title="Friends List Help" message={this.helpMessage}/>}
                         showMenuIconButton={false}
                         style={{backgroundColor: "#622d9b"}}
                     />
@@ -60,7 +73,7 @@ export default class FollowingPanel extends React.Component {
                         </Card>
                     )): null}
                 </ Drawer>
-            </div>
+            </span>
         )
     }
 }
