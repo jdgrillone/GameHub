@@ -1,6 +1,7 @@
 import React from 'react';
 // eslint-disable-next-line
 import PropTypes from 'prop-types';
+// eslint-disable-next-line
 import { Card, CardTitle} from 'material-ui/Card';
 
 const Dashboard = ({ secretData, user }) => (

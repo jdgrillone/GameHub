@@ -26,6 +26,7 @@ export default class AddGame extends React.Component {
     <p>1. Type a game title into the input field.</p>
     <p>2. Click Search button.</p>
     <p>3. Click on the desired result to add the game to your list.</p>
+    <p> MOBILE: Swipe to close </p>
     </div>
     )
 
@@ -81,7 +82,7 @@ export default class AddGame extends React.Component {
                 />
                 <Drawer
                     docked={false}
-                    width={300}
+                    width={350}
                     open={this.state.open}
                     onRequestChange={(open) => this.setState({ open })}
                 >

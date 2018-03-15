@@ -25,6 +25,7 @@ export default class FollowingPanel extends React.Component {
         <p>  -  Go to the <a href="/userslist">User List</a> page to search for a friends name.</p>
         <p>  -  Click on the three dots next to their name to open a menu.</p>
         <p>  -  Then click follow.  It's that easy! </p>
+        <p>  MOBILE: Swipe to close </p>
     </div>
     )
 
@@ -46,7 +47,7 @@ export default class FollowingPanel extends React.Component {
             />
                 <Drawer
                     docked={false}
-                    width={300}
+                    width={350}
                     open={this.state.open}
                     onRequestChange={(open) => this.setState({ open })}
                     openSecondary={true}

@@ -22,7 +22,7 @@ const SignUpForm = ({
         <TextField
           floatingLabelText="Name"
           name="name"
-          errorText={errors.name}
+          errorText={errors.username}
           onChange={onChange}
           value={user.name}
         />
