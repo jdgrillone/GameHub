@@ -19,13 +19,9 @@ This application incorporates the following packages:
 
 ### USER:
 [Heroku Deployment Link](https://t-gamehub.herokuapp.com/ "GameHUB Homepage")
-// LOG IN AND SIGN UP IMAGES
 1. Log in or sign up
-// DASHBOARD IMAGE
 2. Add games to your list by clicking the "ADD GAME" button
-// ADD GAME IMAGE
 3. Click on the toggle to expand the game, then click on "SET TO ACTIVE" button to set yourself as actively playing the selected game.
-// FRIEND LIST IMAGE
 4. Add friends through the "USER LIST" button at top, search by username, then click on the menu next to their name to view profile or follow the user.
 
 ### Developers:
@@ -36,9 +32,13 @@ Must have an [IGDB API key](https://www.igdb.com/api "GameHUB Homepage") and a J
 
 #### Installation
 After cloning the repo, follow the steps below:
+
 ```$ cd GameHub```
+
 ```$ yarn install```
+
 ```$ sudo mongod```
+
 ```$ yarn start```
 
 ## Screenshots
