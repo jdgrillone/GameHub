@@ -43,12 +43,21 @@ After cloning the repo, follow the steps below:
 
 ## Screenshots
 Login:
+
 ![Screenshot](/images/Login.png)
+
 Signup:
+
 ![Screenshot](/images/Sign-Up.png)
+
 Dashboard:
+
 ![Screenshot](/images/Dashboard.png)
+
 Friends List:
+
 ![Screenshot](/images/friends-list.png)
+
 Add Game:
+
 ![Screenshot](/images/add-game.png)
